@@ -93,7 +93,7 @@ Developed with the assistance of Claude (Anthropic), including the proofs, the t
 
 ## How to cite
 
-Ryu, Sungjoon. *Packing k²−c unit squares: an upper bound of order k^{3/8} for the deficiency.* Preprint, version 1.0, 2026. https://github.com/squarepacker/k2-minus-c-upper. Preprint, programs and data: https://doi.org/{{DOI_VERSION}} (this version; all versions: https://doi.org/{{DOI_ALL}}).
+Ryu, Sungjoon. *Packing k²−c unit squares: an upper bound of order k^{3/8} for the deficiency.* Preprint, version 1.0, 2026. https://github.com/squarepacker/k2-minus-c-upper. Preprint, programs and data: https://doi.org/10.5281/zenodo.23256655 (this version; all versions: https://doi.org/10.5281/zenodo.23256654).
 
 ## Previous works
 
