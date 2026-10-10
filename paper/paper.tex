@@ -36,28 +36,37 @@
 
 \title[An upper bound of order $k^{3/8}$ for the deficiency]{Packing $k^2-c$ unit squares:\\ an upper bound of order $k^{3/8}$ for the deficiency}
 \author{Sungjoon Ryu}
-\date{Preprint, version 1.0, 9 October 2026}
+\date{Preprint, version 1.1, 10 October 2026}
 
 \raggedbottom
 \begin{document}
 \begin{abstract}
 For $n\ge1$ let $s(n)$ be the side of the smallest square that contains $n$ unit squares with pairwise disjoint
-interiors, and for an integer $k\ge2$ let $\cs(k)$ be the largest integer $c$ with $s(k^2-c)=k$. We prove
+interiors, and for an integer $k\ge2$ let $\cs(k)$ be the largest integer $c$ with $s(k^2-c)=k$. We prove a tiered
+bound $\cs(k)<C_ik^{3/8}+a_i$ for every integer $k\ge k_i$, for example
 \[
-\cs(k)<43.06\,k^{3/8}+2\cdot10^{-5}\qquad\text{for every integer }k\ge4\cdot10^{26},
+\cs(k)<48.38\,k^{3/8}+0.017\quad(k\ge6.1\cdot10^{14})\qquad\text{and}\qquad
+\cs(k)<40.62\,k^{3/8}+1.4\cdot10^{-5}\quad(k\ge3.4\cdot10^{26}),
 \]
-and, with much better constants for moderate $k$,
-$\cs(k)<20.668\,k^{2/5}+0.623$ for every integer $k\ge1.6\cdot10^7$; the second bound is the smaller one for all
-$k$ below about $5.6\cdot10^{12}$. The frame is an L-shaped arrangement in the spirit of Erd\H{o}s and Graham and of
+and, with two further lemmas on the wall filler, $\cs(k)<45.08\,k^{3/8}+0.026$ for every integer
+$k\ge6.4\cdot10^{13}$;
+with much better constants for moderate $k$ we prove $\cs(k)<20.668\,k^{2/5}+0.623$ for every integer
+$k\ge1.6\cdot10^7$.
+The tiered bound is smaller than $20.668\,k^{2/5}+0.623$ for every $k\ge6.1\cdot10^{14}$, with two further lemmas for every
+$k\ge5.07\cdot10^{13}$ (tier B1s), and with a sawtooth accounting of the wall rows and a choice of the lifts (tiers
+$\ddagger$, for example $\cs(k)<41.19\,k^{3/8}+0.04$ for $k\ge5.22\cdot10^{12}$) for every $k\ge2.48\cdot10^{12}$
+(tier C3).
+The frame is an L-shaped arrangement in the spirit of Erd\H{o}s and Graham and of
 Chung and Graham, in which two bands of width slightly less than an integer $b$ are filled with rows of $b$ unit squares
 tilted by slightly more than $2\arctan(1/b)$; this frame alone gives $\cs(k)\le8\lceil\sqrt{k-4}\,\rceil-1$ for $k\ge6$,
 which we also prove. The rows are lifted, and the four ends of the bands are filled by a ``staircase'': columns of
 squares with one common small tilt, whose lowest squares are replaced by horizontal layers so that the columns follow
 the rising end of the band. This gives an uncovered area $O(b^{2/3})$ per end and the exponent $2/5$. Filling the two
 walls of each end by chains of staircases whose tilt is lowered from block to block gives $O(b^{3/5})$ per end and the
-exponent $3/8$. These ideas are due to Bui; our proofs are self-contained. The constants of the $3/8$ bound are
-certified by interval arithmetic; its asymptotic regime cannot be tested by explicit computation, and the explicit
-checks test the construction at smaller sizes. Explicit packings, checked in exact rational arithmetic, also by
+exponent $3/8$. These ideas are due to Bui; our proofs are self-contained. The constants of the $3/8$ bounds are
+certified by interval arithmetic; their range of validity cannot be tested by explicit computation, and the explicit
+checks test the construction at smaller sizes. Version~1.1 replaces the single bound $43.06\,k^{3/8}+2\cdot10^{-5}$
+($k\ge4\cdot10^{26}$) of version~1.0 by the tiers. Explicit packings, checked in exact rational arithmetic, also by
 checkers written independently of the generating program, give for example $\cs(10^5)\le1583$ and
 $\cs(10^8)\le24790$. Together with the lower bound of order $k^{1/3}$ of [T] (a preprint, not refereed),
 $k^{1/3}\ll\cs(k)\ll k^{3/8}$; the true exponent is open. The paper has not been refereed.
@@ -95,17 +104,63 @@ literature gives $O(k^{7/11})$ [EG] and $O(k^{(3+\sqrt2)/7}\log k)$ [CG], and Ar
 The main result is the following.
 
 \begin{theorem}[computer-assisted constants]\label{thm:main38}
-For every integer $k\ge k_1:=4\cdot10^{26}$,
+For each tier $i$ of Table~\ref{tab:tiers} and every integer $k\ge k_i$,
 \[
-\cs(k)\ <\ \frac{32}{5}\Bigl(\frac53\Bigr)^{3/8}15.54^{5/8}\,k^{3/8}+2\cdot10^{-5}
-\ <\ 43.06\,k^{3/8}+2\cdot10^{-5} .
+\cs(k)\ <\ C_i\,k^{3/8}+a_i .
 \]
+Here $C_i\ge\frac{32}{5}\bigl(\frac53\bigr)^{3/8}C_{E,i}^{5/8}$, $k_i\ge\frac35C_{E,i}b_{0,i}^{8/5}$ and
+$a_i\ge\frac{12}5C_{E,i}b_{0,i}^{-2/5}$, where $b_{0,i}$ and $C_{E,i}$ are the threshold and the end constant of
+Corollary~\ref{cor:b35} for the parameters of tier $i$ (Table~\ref{tab:certtiers}).
+The tiers marked $\dagger$ use, in addition to the lemmas used by the other tiers, the construction ZC$'$ and
+Lemmas~\ref{lem:P3a}--\ref{lem:Wpp} of Section~\ref{ssec:refine}.
+The tiers marked $\ddagger$ use, in addition to these, Lemmas~\ref{lem:SL}, \ref{lem:T1}, \ref{lem:W4} and~\ref{lem:T2}
+and Corollary~\ref{cor:b35c} (Sections~\ref{ssec:sawtooth} and~\ref{ssec:liftT2}); for them \(b_{0,i}\) and \(C_{E,i}\) are those of Corollary~\ref{cor:b35c} (Table~\ref{tab:certC}).
 \end{theorem}
 
-The proof is in Section~\ref{sec:38}. Its constants are certified by interval arithmetic (Corollary~\ref{cor:b35}).
-The asymptotic regime $k\ge4\cdot10^{26}$, where one end of a band has about $10^{16}$ pieces, cannot be tested by
-explicit computation; the explicit checks of Remark~\ref{rem:38exact} test the validity of the construction and of its
-lemmas at smaller sizes. For moderate $k$ the staircase alone gives a smaller bound with much better constants:
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+tier $i$ & $b_{0,i}$ & $C_{E,i}$ & $C_i$ & $k_i$ & $a_i$ & better than Thm.~\ref{thm:main} for $k\ge$\\
+\midrule
+B1$^\dagger$ & $10^{7.7}$ & $17.461$ & $46.31$ & $2.2\cdot10^{13}$ & $0.035$ & $1.04\cdot10^{14}$\\
+B1s$^\dagger$ & $10^{7.9}$ & $16.968$ & $45.49$ & $4.5\cdot10^{13}$ & $0.029$ & $5.07\cdot10^{13}$\\
+B2$^\dagger$ & $10^{8}$ & $16.721$ & $45.08$ & $6.4\cdot10^{13}$ & $0.026$ & $6.4\cdot10^{13}$\\
+A1 & $10^{8.5}$ & $18.961$ & $48.76$ & $4.6\cdot10^{14}$ & $0.019$ & $8.14\cdot10^{14}$\\
+A1s & $10^{8.58}$ & $18.722$ & $48.38$ & $6.1\cdot10^{14}$ & $0.017$ & $6.1\cdot10^{14}$\\
+A2 & $10^{9}$ & $17.523$ & $46.42$ & $2.7\cdot10^{15}$ & $0.011$ & $2.7\cdot10^{15}$\\
+A3 & $10^{10}$ & $15.859$ & $43.61$ & $9.6\cdot10^{16}$ & $0.0039$ & $9.6\cdot10^{16}$\\
+A4 & $10^{12}$ & $14.778$ & $41.73$ & $1.5\cdot10^{20}$ & $5.7\cdot10^{-4}$ & $1.5\cdot10^{20}$\\
+A5 & $10^{16}$ & $14.153$ & $40.62$ & $3.4\cdot10^{26}$ & $1.4\cdot10^{-5}$ & $3.4\cdot10^{26}$\\
+C1$^\ddagger$ & $10^{7.3617}$ & $14.473$ & $41.19$ & $5.22\cdot10^{12}$ & $0.04$ & $5.22\cdot10^{12}$\\
+C2$^\ddagger$ & $10^{7.2}$ & $14.805$ & $41.78$ & $2.95\cdot10^{12}$ & $0.047$ & $2.95\cdot10^{12}$\\
+C3$^\ddagger$ & $10^{7.15}$ & $14.983$ & $42.09$ & $2.48\cdot10^{12}$ & $0.05$ & $2.48\cdot10^{12}$\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{The tiers of Theorem~\ref{thm:main38}. The constants are rounded up. The last column is
+$\max(k_i,k_{x,i})$, where $k_{x,i}:=(C_i/20.668)^{40}$ (rounded up to three digits) is the point from which
+$C_ik^{3/8}<20.668\,k^{2/5}$; as $a_i<0.623$, from there on the tier gives a smaller bound than
+Theorem~\ref{thm:main}.
+Tiers marked $\dagger$ use ZC$'$ and Lemmas~\ref{lem:P3a}--\ref{lem:Wpp} (Section~\ref{ssec:refine}).
+Tiers marked $\ddagger$ use, in addition, Lemmas~\ref{lem:SL}--\ref{lem:W4} and~\ref{lem:T2} (Sections~\ref{ssec:sawtooth}
+and~\ref{ssec:liftT2}); their parameters are in Table~\ref{tab:certC}.
+}\label{tab:tiers}
+\end{table}
+
+The proof is in Section~\ref{sec:38}. Its constants are certified by interval arithmetic (Corollaries~\ref{cor:b35} and~\ref{cor:b35c}).
+The range $k\ge k_i$, where one end of a band has more than $10^{7}$ pieces, has not been tested by explicit
+computation, except for $15$ end packings of the tiers $\ddagger$ near $b_0$ (``Verification of version~1.1''); the
+explicit checks of Remark~\ref{rem:38exact} test the validity of the construction and of its lemmas at smaller sizes.
+
+\emph{Version~1.0.} Version~1.0 of this paper [U] stated $\cs(k)<43.06\,k^{3/8}+2\cdot10^{-5}$ for every integer
+$k\ge4\cdot10^{26}$ (with $C_E=15.54$ and $b_0=10^{16}$). That statement remains proved (it is the case
+$(b_0,c_y,c_D,c_R,a_w,\varpi)=(10^{16},1/12,4,4,3/2,0.65)$ of Section~\ref{sec:38}, see
+Section~\ref{ssec:proofthm38}), and it is superseded by the tier A5: $\cs(k)<40.62\,k^{3/8}+1.4\cdot10^{-5}$ for
+$k\ge3.4\cdot10^{26}$.
+
+For moderate $k$ the staircase alone gives a smaller bound with much better constants:
 
 \begin{theorem}\label{thm:main}
 For every integer $k\ge k_0:=1.6\cdot10^7$,
@@ -118,12 +173,18 @@ For every integer $k\ge k_0:=1.6\cdot10^7$,
 The proof (Section~\ref{sec:stair}) gives $\cs(k)\le(18.89+o(1))\,k^{2/5}$ as $k\to\infty$. At $k=k_0$ the bound is
 $15738.5$; the bound of Theorem~\ref{thm:sqrt} below is $31999$ there.
 
-\emph{Which bound to use.} We keep both theorems: Theorem~\ref{thm:main} is the effective bound and
-Theorem~\ref{thm:main38} the asymptotic one. For $1.6\cdot10^7\le k<4\cdot10^{26}$ only Theorem~\ref{thm:main} is
-proved; the closed forms of Theorems~\ref{thm:main38} and~\ref{thm:main} cross at about $k=5.6\cdot10^{12}$
-($43.06\,k^{3/8}<20.668\,k^{2/5}$ exactly when $k^{1/40}>43.06/20.668$). Theorem~\ref{thm:main} also comes with explicit
-packings for moderate $k$ (Theorem~\ref{thm:cert} below), while Theorem~\ref{thm:main38} gives the exponent $3/8$. At
-$k=4\cdot10^{26}$ the two closed forms are about $4.07\cdot10^{11}$ and $9.04\cdot10^{11}$.
+\emph{Which bound to use.} Of the two bounds, only Theorem~\ref{thm:main} is proved for $1.6\cdot10^7\le k<2.48\cdot10^{12}$
+($k<2.2\cdot10^{13}$ without Sections~\ref{ssec:sawtooth} and~\ref{ssec:liftT2}, and $k<4.6\cdot10^{14}$ without
+Section~\ref{ssec:refine} either).
+From there on both theorems apply, and for each $k$ one may take the smallest of the bounds that apply.
+With the tiers that use only Lemmas~\ref{lem:W} and~\ref{lem:E38} (no $\dagger$), Theorem~\ref{thm:main38} gives
+a smaller bound than $20.668\,k^{2/5}+0.623$ (Theorem~\ref{thm:main}) for every $k\ge6.1\cdot10^{14}$ (tier A1s). With
+the tiers marked $\dagger$
+as well, it does so for every $k\ge5.07\cdot10^{13}$ (tier B1s).
+With the tiers marked $\ddagger$ as well, it does so for every $k\ge2.48\cdot10^{12}$ (tier C3).
+Below that point Theorem~\ref{thm:main} is the better bound (or the only one), and it also comes with explicit packings
+for moderate $k$ (Theorem~\ref{thm:cert} below); Theorem~\ref{thm:main38} gives the exponent $3/8$. Both bounds are
+far above the values of explicit packings, and neither is claimed to be close to $\cs(k)$.
 
 The frame of the proof is an L-shaped packing. For an integer $b\ge2$ put $D:=b^2+1$,
 \[
@@ -202,7 +263,7 @@ Theorem~\ref{thm:A} are standard, and the staircase and the chained wall stairs 
 (Section~\ref{ssec:credit}); what seems not to have been written down is their use just below an integer, with bands of
 width $b-\varepsilon$.
 
-\emph{The order of $\cs(k)$.} Theorem~\ref{thm:main38} and the lower bound of [T] give
+\emph{The order of $\cs(k)$.} Theorem~\ref{thm:main38} (any one tier) and the lower bound of [T] give
 \[
 k^{1/3}\ \ll\ \cs(k)\ \ll\ k^{3/8}.
 \]
@@ -232,11 +293,18 @@ and~\ref{sec:stair}, and Theorem~\ref{thm:main38} in Sections~\ref{sec:ends} and
 Theorem~\ref{thm:main} relies on one evaluation in interval arithmetic,
 $\Phi(10^{-4/3})\le5.0163$ (Corollary~\ref{cor:b23}), done by the author's program and by three independent
 computations; the other numerical constants were certified in the same way. The constants of
-Theorem~\ref{thm:main38} (Corollary~\ref{cor:b35}) are certified by interval arithmetic on covers of the whole range
-$b\ge10^{16}$: the author's own program used too little slack on the wall tilts, and the constant $C_E=15.54$ is
-certified by three independent full-range coverings ($C_E\le14.964$, $14.963$ and $14.9631$), with different libraries
-(\texttt{mpmath.iv} twice and \texttt{python-flint} arb once); the asymptotic regime cannot be tested by
-explicit computation, and the explicit checks test the construction at smaller $b$ (Remark~\ref{rem:38exact}).
+Theorem~\ref{thm:main38} (Corollaries~\ref{cor:b35} and~\ref{cor:b35c}) are certified, tier by tier, by interval arithmetic on covers of the
+whole range $b\ge b_{0,i}$, by the author's covering and by three coverings written independently from the text: two
+by verification agents (\texttt{mpmath.iv} and \texttt{python-flint} arb) and one by a reviewer (\texttt{mpmath.iv}), and all three implement the same normalised inequalities (the lists of Appendices~\ref{app:enc} and~\ref{app:encC}), so they check the arithmetic and the coverage but are only a weak check of the transcription of these inequalities from the lemmas; the point checks of the un-normalised formulas (at \(90\), \(120\) and \(5850\) points) partly address that.
+All programs were written by AI systems of the same family (see ``Verification of version~1.1'' at the end of the
+paper). The range of validity cannot be tested by
+explicit computation, and the explicit checks test the construction at smaller $b$ (Remark~\ref{rem:38exact}). The
+changes of version~1.1 in Section~\ref{sec:38}
+(the parameters, the tiers and Section~\ref{ssec:refine})
+received two independent blank-slate AI reviews, which found them correct with minor fixes; the fixes are included.
+Sections~\ref{ssec:sawtooth} and~\ref{ssec:liftT2} (the tiers marked $\ddagger$) received two further blank-slate AI
+reviews: one found Lemmas~\ref{lem:SL}, \ref{lem:T1}, \ref{lem:W4} and~\ref{lem:T2} correct and
+Corollary~\ref{cor:b35c} and the tiers $\ddagger$ correct after fixes (included), the other found all of it correct.
 Theorem~\ref{thm:cert} consists of the structural part of Section~\ref{sec:ends} and a finite part (explicit end
 packings), checked in exact rational arithmetic by the program that produced it and by checkers written independently
 from a description of the construction (Section~\ref{sec:cert}). The proofs were written and checked with AI
@@ -1041,6 +1109,19 @@ ideas (horizontal layers under tilted columns, and filling the wall trapezoids b
 block to block) are those of Bui [Bui, Sections~3--4]; the construction and the proof below are self-contained and do not
 use any argument of [Bui].
 
+The construction has six real parameters: the threshold $b_0$, the window coefficient $c_y$ of the lifts, the wall
+widths $c_D$, $c_R$, the wall tilt factor $a_w$ and the proof parameter $\varpi$ of Lemma~\ref{lem:W}. Version~1.0 of
+this paper used the single choice $(10^{16},1/12,4,4,3/2,0.65)$. Version~1.1 keeps all lemmas of version~1.0 and needs
+no new lemma for the parameters; it states them with the parameters, adds two short arguments that version~1.0 did not
+need (the error of the wall tilts in (E6) for all tilts up to $1/10$, and the room condition in
+Section~\ref{ssec:proofthm38}), and certifies the constants for each row of
+Table~\ref{tab:certtiers} (Section~\ref{ssec:b35}); this gives the tiers of Theorem~\ref{thm:main38}.
+Section~\ref{ssec:refine} adds a variant ZC$'$ of the wall filler and two lemmas (Lemmas~\ref{lem:P2}
+and~\ref{lem:P3}) with a smaller bound; only the tiers marked $\dagger$ use them.
+Sections~\ref{ssec:sawtooth} and~\ref{ssec:liftT2} add a sawtooth accounting of two groups of wall rows
+(Lemmas~\ref{lem:SL}--\ref{lem:W4}) and a choice of the lift of each band (Lemma~\ref{lem:T2}); only the tiers marked
+$\ddagger$ use them.
+
 Throughout this section we use the tilt notation of Section~\ref{ssec:stairlemma}, the columns $K(\xi,J,n)$ and
 Lemmas~\ref{lem:col} and~\ref{lem:tiltS}, and we put
 \[
@@ -1101,7 +1182,8 @@ block ends when its staircase is used up, and the next block starts after a phas
 smaller tilt, chosen so that every layer opened in the block ends just before the next block with a small residual
 (see (R) below).
 
-\emph{Parameters.} Let $\varpi\in(0,1)$ (we use $\varpi=0.65$), let $q_{\min}$ be the value of $q$ at the slope
+\emph{Parameters.} Let $\varpi\in(0,1)$ (a free proof parameter; the tiers of Section~\ref{ssec:b35} use $\varpi=0.65$
+or $\varpi=0.681818$), let $q_{\min}$ be the value of $q$ at the slope
 $\varpi\taz$, that is $q_{\min}:=(\varpi\taz)^2/(s_m(s_m+1))$ with $s_m:=\sqrt{1+\varpi^2\taz^2}$, and put
 $M_{\max}:=r(L)+N_0q_0$ ($q_0$ is $q$ at $t_0$),
 \[
@@ -1288,13 +1370,317 @@ $0$ to $L$, rows $j\le\lfloor\chi\rfloor-1$ are placed with waste at most $1$, a
 $L(1+\zeta L)\le w_e(1+\zeta w_e)$, as $L<s_0+\sez\le w_e$.
 \end{proof}
 
+\subsection{The variant ZC\texorpdfstring{$'$}{'}, transition rows and the end region}\label{ssec:refine}
+This subsection is new in version~1.1. Only the tiers marked $\dagger$ in Tables~\ref{tab:tiers}
+and~\ref{tab:certtiers} use it. It changes one rule of ZC and replaces two crude terms of $B_W$, the transition term
+$A_T$ and the end term $w_e(4+2\zeta w_e)$.
+
+\emph{Construction ZC$'$.} It is identical to ZC except for the last sentence of (Z4), which becomes:
+\begin{enumerate}[label=(Z4$'$)]
+\item For a stretch of row $j$ from $a$ to $a^+$ put
+\[
+a^*:=\max\bigl(a,\ 0,\ (j+1-\chi)/\zeta\bigr)
+\]
+(the least $x\ge\max(a,0)$ with $r(x)\ge j+1$); if $a^+-a^*\ge1$, place the row $[a^*,\,a^*+\lfloor a^+-a^*\rfloor]\times[j,j+1]$.
+\end{enumerate}
+(Z1)--(Z3) (blocks, columns, tilts, phases) and the stretches (their left and right ends) are unchanged.
+
+\emph{Observation (O).} If $a\ge0$ and $j+1\le r(a)$, then $a^*=a$, and ZC$'$ places exactly the piece that ZC places
+(if $a^+-a<1$, neither places a piece). So ZC$'$ differs from ZC only on stretches where ZC places nothing because $a<0$
+or $j+1>r(a)$; there ZC$'$ may place a row that starts further to the right.
+
+\begin{lemma}\label{lem:P3a}
+Under (W1)--(W5) the construction ZC$'$ does not fail, its pieces form a packing in $Z$, and $U_Z\le B_W$.
+\end{lemma}
+
+\begin{proof}
+(Z1)--(Z3) are those of ZC, so parts (a)--(c) of the proof of Lemma~\ref{lem:W} apply verbatim (they do not involve the
+rows). \emph{Containment:} a placed row of ZC$'$ has $a^*\ge0$, $a^*+\lfloor a^+-a^*\rfloor\le a^+\le L$, and
+$r(X)\ge r(a^*)\ge j+1$ on it, as $r$ is increasing and $a^*\ge(j+1-\chi)/\zeta$. \emph{Disjointness:} the piece lies in
+$[a,a^+]\times[j,j+1]$. Every separation statement of Lemma~\ref{lem:W}(e) about a row piece uses only that (1) its lower
+left corner $(a',j)$ satisfies $\lambda_\beta(a',j)\ge\xi_{\beta,p(j)}$ (or $a'\ge0$ for a first stretch), (2) its top
+right corner $(a'',j+1)$ satisfies $\lambda_{\beta_2}(a'',j+1)\le s_{\beta_2}$ (or $a''\le L$ for a last stretch), and
+(3) the piece lies in $\{j\le Y\le j+1\}$. As $a^*\ge a$, $a^*+\lfloor a^+-a^*\rfloor\le a^+$ and $\lambda_\beta$,
+$\lambda_{\beta_2}$ are increasing in $X$, (1)--(3) hold for the piece of ZC$'$ because they hold for the segment
+$[a,a^+]\times[j,j+1]$; so (e) holds verbatim. \emph{Accounting:} the partition of (f) into cells and stretch regions
+does not depend on the placement rule, and the pieces that ZC$'$ places in a stretch lie in its region. Each bound in
+(f1)--(f4) is either of the form ``waste at most area'', which holds for any placement, or of the form ``the piece is
+placed by ZC and the waste is at most \dots''; in the second case ZC$'$ places the same piece by (O).
+\end{proof}
+
+\begin{lemma}[transition rows]\label{lem:P2}
+Assume (W1)--(W5), and let $\beta$ be a complete block whose successor $\beta+1$ exists ($s_{\beta+1}+\sec\alpha_{\beta+1}
+\le L$). For ZC and for ZC$'$ the total waste of the transition rows of $\beta$ (the stretches with left end on the line
+$\lambda_\beta=\hat\xi_\beta$ and right end on the line $\lambda_{\beta+1}=s_{\beta+1}$) is at most
+\[
+A_T':=(h_T+1)(1+\taz)+\bigl(2+\zeta(w_T+\taz+\zeta\taz)\bigr)(w_T+\taz),
+\]
+with $h_T$, $w_T$ as in Lemma~\ref{lem:W}. Hence Lemmas~\ref{lem:W} and~\ref{lem:P3a} hold with $A_T$ replaced by $A_T'$.
+\end{lemma}
+
+\begin{proof}
+Write $\ta$, $\se$, $q$, $M$, $s$, $\hat\xi:=\hat\xi_\beta$, $J_{\rm L}:=J_{\beta,\rm L}$ and $n_{\rm L}$ for block $\beta$, and
+$\ta':=\tan\alpha_{\beta+1}\le\ta$, $s':=s_{\beta+1}=\hat\xi+\omega$ with $\omega\in[0,1]$, and
+$\hat\kappa:=\ta-\ta'=\kappa_\beta+\eta_\beta\le q_0^2/\zeta+\delta_Q$. By Lemma~\ref{lem:W}(c) the transition rows are
+the rows $j\ge J_{\rm L}$. The stretch of row $j$ has left end $a_j:=\hat\xi-j\ta$, right end $a_j^+:=s'-(j+1)\ta'$,
+length $\ell_j:=a_j^+-a_j=\omega-\ta'+j\hat\kappa$ and region
+$\mathrm{Str}_j:=\{z\in Z:\ j\le Y<j+1,\ \lambda_\beta\ge\hat\xi,\ \lambda_{\beta+1}<s'\}$. The rows $j\ge\lfloor r(L)\rfloor$
+are not treated by (Z4); their regions are counted in the same way below, and they are bad rows in the sense of (3)
+(as $j+1>r(L)\ge r(a_j)$), so no part of $\{\lambda_\beta\ge\hat\xi,\ \lambda_{\beta+1}<s',\ Y\ge J_{\rm L}\}\cap Z$ is missed.
+
+(1) \emph{Number of rows.} By Lemma~\ref{lem:W}(f3) every point of
+$\{\lambda_\beta\ge\hat\xi,\ \lambda_{\beta+1}<s',\ Y\ge J_{\rm L}\}\cap Z$ has $Y<J_{\rm L}+h_T$. So $\mathrm{Str}_j$ is
+empty unless $j$ is an integer in $[J_{\rm L},J_{\rm L}+h_T)$: at most $h_T+1$ rows.
+
+(2) \emph{The left ends are positive.} $h_T-1$ equals the right-hand side of (W3) minus $\zeta+(1+\zeta\taz)/q_{\min}$, so
+(W3) gives $h_T-1<N_0\caz\le N_0$. For a row of (1), $j<J_{\rm L}+h_T<(M-1)+1+N_0=M+N_0$. By (I2), \eqref{eq:L1} and (W1),
+$\hat\xi=s+\Lambda_\beta>M\ta+\Lambda\ge M\ta+N_0\taz\ge(M+N_0)\ta$. Hence $a_j>0$.
+
+(3) \emph{Waste of one row.} The horizontal sections of $\{j\le Y<j+1,\ \lambda_\beta\ge\hat\xi,\ \lambda_{\beta+1}<s'\}$
+have length $(s'-Y\ta')-(\hat\xi-Y\ta)=\omega+Y\hat\kappa$, affine in $Y$, equal to $\ell_j+\ta'$ at $Y=j$ and to
+$\ell_j+\ta$ at $Y=j+1$; so $\operatorname{area}(\mathrm{Str}_j)\le\max(0,\ell_j+\taz)$. Call row $j$ \emph{good} if
+$j+1\le r(a_j)$ and \emph{bad} otherwise. In a good row, by (2) and (O), ZC and ZC$'$ both place
+$[a_j,a_j+\lfloor\ell_j\rfloor]\times[j,j+1]$ if $\ell_j\ge1$, and the waste is at most
+$\ell_j+\taz-\lfloor\ell_j\rfloor<1+\taz$; if $\ell_j<1$ it is at most $\max(0,\ell_j+\taz)<1+\taz$. In a bad row the waste
+is at most $\operatorname{area}(\mathrm{Str}_j)\le\max(0,\ell_j+\taz)$; a point of $\mathrm{Str}_j$ has
+$j\le Y\le r(X)\le r(L)$, so if $\mathrm{Str}_j\ne\emptyset$ then $j\le r(L)$ and
+$\ell_j\le1+j\hat\kappa\le1+r(L)(q_0^2/\zeta+\delta_Q)\le w_T$; the waste is at most $w_T+\taz$.
+
+(4) \emph{Number of bad rows.} Let $j$ be bad with $\mathrm{Str}_j\ne\emptyset$, and $(X,Y)\in\mathrm{Str}_j$. Then
+$j\le Y\le r(X)$ and $X<s'-Y\ta'\le s'-j\ta'$, so $j\le r(s'-j\ta')$, that is $j(1+\zeta\ta')\le H+\zeta\omega$ with
+$H:=r(\hat\xi)$. Bad means $j+1>r(\hat\xi-j\ta)$, that is $j(1+\zeta\ta)>H-1$. So $j$ lies in the half-open interval
+$\bigl((H-1)/(1+\zeta\ta),\ (H+\zeta\omega)/(1+\zeta\ta')\bigr]$, whose length is
+\begin{align*}
+\frac{H\zeta(\ta-\ta')+\zeta\omega(1+\zeta\ta)+1+\zeta\ta'}{(1+\zeta\ta)(1+\zeta\ta')}
+&\le1+\zeta\bigl(H\hat\kappa+1+\taz+\zeta\taz\bigr)\\
+&\le1+\zeta\bigl(w_T+\taz+\zeta\taz\bigr),
+\end{align*}
+using $\omega\le1$, $\ta,\ta'\le\taz$, a denominator at least $1$, and $H\le r(L)$ (as $\hat\xi\le s'\le L$, since the
+successor exists), so that $H\hat\kappa+1\le w_T$. A half-open interval of length $\ell$ contains at most $\ell+1$
+integers: there are at most $2+\zeta(w_T+\taz+\zeta\taz)$ bad rows.
+
+Counting every row with the bound $1+\taz$ and the bad rows once more with $w_T+\taz$ gives at most $A_T'$. The other
+parts of the proof of Lemma~\ref{lem:W} are unchanged.
+\end{proof}
+
+\begin{lemma}[end region of ZC$'$]\label{lem:P3}
+Assume (W1)--(W5). For ZC$'$ the last term $w_e(4+2\zeta w_e)$ of $B_W$ may be replaced by $w_e$.
+\end{lemma}
+
+\begin{proof}
+Let $P_z:=\{(X,Y):\ 0\le X\le L,\ \lfloor r(X)\rfloor\le Y\le r(X)\}$ (the \emph{partial layer}). Its vertical sections
+have length $\operatorname{frac}(r(X))<1$, so $\operatorname{area}(P_z\cap\{X\in I\})\le|I|$ for every interval $I$.
+
+\emph{No block.} Every row $j<\lfloor r(L)\rfloor$ is one stretch from $0$ to $L$. The part of its region with
+$X\ge a_j^*$ is $[a_j^*,L]\times[j,j+1)$ (inside $Z$, as $r(X)\ge r(a_j^*)\ge j+1$ there), of which ZC$'$ leaves
+uncovered less than $1$; the part with $X<a_j^*$ lies in $P_z$ (as in (iii) below). The points with
+$Y\ge\lfloor r(L)\rfloor$ lie in $P_z$. So $U_Z\le\lfloor r(L)\rfloor+\operatorname{area}(P_z)\le r(L)+L$, and
+$L<s_0+\sez\le w_e$ as in Lemma~\ref{lem:W}(f4); this is at most $r(L)(1+\frac12\taz)+w_e$.
+
+\emph{Blocks exist.} Let $\beta$ be the last block, $\ta:=\tan\alpha_\beta$, $\hat\xi:=\hat\xi_\beta$ and
+$E_{\rm end}:=\{z\in Z:\ \lambda_\beta(z)\ge\hat\xi\}$. As in Lemma~\ref{lem:W}(f3), $L-\hat\xi<1+\sez$, so every point
+of $E_{\rm end}$ has $X\ge\hat\xi-Y\ta\ge\hat\xi-r(L)\taz>L-w_e$: $E_{\rm end}\subset\{L-w_e<X\le L\}$. No cell meets
+$E_{\rm end}$: the cells of $\beta$ lie in $\{\lambda_\beta<\hat\xi\}$, and the cells of an earlier block $\beta''$ lie
+in $\{\lambda_{\beta''}<\hat\xi_{\beta''}\}$, while $\lambda_\beta\le\lambda_{\beta''}$ for $Y\ge0$ and
+$\hat\xi_{\beta''}\le s_\beta\le\hat\xi$. The \emph{end rows} are the stretches with left end $a_j:=\hat\xi-j\ta$ on the
+line $\lambda_\beta=\hat\xi$ and right end $x=L$ (rows $j<\lfloor r(L)\rfloor$); their regions are
+$\mathrm{Str}_j=\{z\in Z:\ j\le Y<j+1,\ \lambda_\beta\ge\hat\xi\}$. Split $\mathrm{Str}_j$ by $X$:
+\begin{enumerate}[label=(\roman*)]
+\item $X\ge a_j^*$: if $a_j^*\le L$ this is the rectangle $[a_j^*,L]\times[j,j+1)$ (its points satisfy $X\ge0$,
+$Y<j+1\le r(a_j^*)\le r(X)$ and $\lambda_\beta\ge a_j+j\ta=\hat\xi$); ZC$'$ places $\lfloor L-a_j^*\rfloor$ squares in it
+if $L-a_j^*\ge1$, so the waste of this part is less than $1$;
+\item $X<a_j$: this part lies in the triangle $\{\hat\xi-Y\ta\le X<\hat\xi-j\ta,\ j\le Y<j+1\}$ of area at most
+$\frac12\ta\le\frac12\taz$;
+\item $a_j\le X<a_j^*$ (only if $a_j^*>a_j$): points of $Z$ have $X\ge0$, so this part is empty if $a_j^*=0$; otherwise
+$a_j^*=(j+1-\chi)/\zeta$, its points have $r(X)<j+1$ and $j\le Y\le r(X)$, so $\lfloor r(X)\rfloor=j$ and they lie in
+$P_z\cap E_{\rm end}$.
+\end{enumerate}
+The points of $E_{\rm end}$ with $Y\ge\lfloor r(L)\rfloor$ (rows not treated by (Z4)) lie in $P_z$, as
+$\lfloor r(X)\rfloor\le\lfloor r(L)\rfloor\le Y$. The parts (iii) of different rows and this part are disjoint subsets of
+$P_z\cap\{L-w_e<X\le L\}$, of total area at most $w_e$. There is at most one final stretch per row
+$j<\lfloor r(L)\rfloor$. A final stretch is either an end row, whose waste outside $P_z$ is less than $1+\frac12\taz$
+by (i) and (ii), or, by Lemma~\ref{lem:W}(c), a stretch whose left end is $x=0$ or a slab line with $p\le P_{\beta'}-1$
+of some block $\beta'$; such a stretch is placed as by ZC (by (O)) and has waste at most $1+\frac12\taz$ as in
+Lemma~\ref{lem:W}(f3). This covers the rows $j<J_{\beta,\rm L}$ of $E_{\rm end}$: if $J_{\beta,0}\le j<J_{\beta,\rm L}$,
+then $p(j)\le P_\beta-1$ and $E_{\rm end}\cap\{j\le Y<j+1\}$ lies in the region of the final stretch of row $j$, which
+starts on the slab line $\xi_{\beta,p(j)}$ of $\beta$; if $j<J_{\beta,0}$, the last block does not block row $j$, and
+$E_{\rm end}\cap\{j\le Y<j+1\}$ lies in the region of the final stretch of row $j$, which starts at $x=0$ or after an
+earlier block (with $p\le P_{\beta'}-1$ by Lemma~\ref{lem:W}(c)). So the final stretches together with
+$E_{\rm end}\cap\{Y\ge\lfloor r(L)\rfloor\}$ waste at most $r(L)(1+\frac12\taz)+w_e$, which replaces
+$r(L)(1+\frac12\taz)+w_e(4+2\zeta w_e)$ in (f4).
+\end{proof}
+
+\begin{lemma}[wall filler ZC$'$]\label{lem:Wpp}
+Under (W1)--(W5) the construction ZC$'$ does not fail, its pieces form a packing in $Z$, and
+\begin{multline*}
+U_Z\le B_W'':=Lc_{\rm col}+\Kb\Bigl[(N_0-1)(\varepsilon_W+\taz)+\frac{1+\zeta\taz}{q_{\min}}(1+\taz)+A_T'\Bigr]\\
++\lfloor\chi\rfloor\bigl(1+\tfrac12\taz\bigr)+w_0(1+\zeta w_0)+r(L)\bigl(1+\tfrac12\taz\bigr)+w_e+2(1+\taz),
+\end{multline*}
+with $A_T'$ of Lemma~\ref{lem:P2} and the other symbols as in Lemma~\ref{lem:W}.
+\end{lemma}
+
+\begin{proof}
+Lemmas~\ref{lem:P3a}, \ref{lem:P2} and~\ref{lem:P3}. Lemma~\ref{lem:P2} changes the transition rows of the complete
+blocks that have a successor, and Lemma~\ref{lem:P3} the final stretches and $E_{\rm end}$; these terms of (f4) are
+disjoint. The term $2(1+\taz)$ is not needed (Lemma~\ref{lem:P3} gives $w_e$); it is kept because the certification of
+Section~\ref{ssec:b35} uses the larger bound.
+\end{proof}
+
+\subsection{Sawtooth accounting of the start rows and the final stretches}\label{ssec:sawtooth}
+This subsection is new in version~1.1 and is used only by the tiers marked $\ddagger$ (which also use
+Section~\ref{ssec:refine}). The construction ZC$'$ is not changed; only the accounting of two groups of rows is
+sharpened: the lengths of these rows form arithmetic progressions, and the sum of the fractional parts of such a
+progression is about half its length.
+
+\emph{Notation.} $\operatorname{frac}(x):=x-\lfloor x\rfloor\in[0,1)$. For a block $\beta$ of ZC (equally of ZC$'$) we use
+the quantities of Lemma~\ref{lem:W}(a) for that block: $A_\beta:=(\Gamma_{\beta,0}-M_\beta\ca_\beta-\sa_\beta)/q_\beta$ and
+$B_\beta:=q_\beta/(\zeta\se_\beta)$, so that $J_{\beta,i}=\lfloor A_\beta+i/B_\beta\rfloor$ for $0\le i\le P_\beta-1$ for
+every block, complete or not; $J_{\beta,\rm L}:=J_{\beta,P_\beta-1}$; $\kappa_\beta:=q_\beta^2/\zeta$ (for a complete
+block this is $\kappa_\beta$ of (Z3)); and $p(j):=\#\{i:\ J_{\beta,i}\le j\}$. The new hypothesis is
+\begin{enumerate}[label=(W6)]
+\item $\nu_*:=\varpi\taz-q_0^2/\zeta>0$.
+\end{enumerate}
+
+\begin{lemma}[sawtooth sums]\label{lem:SL}
+Let $0<\nu<1$, $\epsilon\ge0$, $n\ge0$ an integer, $c$ real, $\pm\in\{+1,-1\}$, and $x_j=c\pm j\nu+d_j$ ($0\le j\le n-1$)
+with $d_j\in[0,\epsilon]$. Then
+\[
+\sum_{j=0}^{n-1}\operatorname{frac}(x_j)\le n\,\frac{1+\nu}2+n\epsilon+\frac1{8\nu}.
+\]
+\end{lemma}
+
+\begin{proof}
+(1) For $d\ge0$, $\operatorname{frac}(y+d)\le\operatorname{frac}(y)+d$: if $\operatorname{frac}(y)+d<1$ the two sides are
+equal; otherwise $\operatorname{frac}(y+d)=\operatorname{frac}(y)+d-\lfloor\operatorname{frac}(y)+d\rfloor\le
+\operatorname{frac}(y)+d-1$. So it suffices to treat $d_j=0$ and to add $n\epsilon$. (2) The sign $-1$ is the sign $+1$
+read backwards: $x_{n-1-i}=c'+i\nu$ with $c':=c-(n-1)\nu$. (3) Let $y_j:=\operatorname{frac}(c+j\nu)$. As $0<\nu<1$,
+$y_{j+1}=y_j+\nu$ if $y_j+\nu<1$, and $y_{j+1}=y_j+\nu-1$ otherwise (a \emph{wrap}). Cut $0,\dots,n-1$ before each index
+that follows a wrap; this gives maximal runs of consecutive indices. In a run of $r\ge1$ indices the values are
+$f,f+\nu,\dots,f+(r-1)\nu=:l$ with $l<1$, and their sum is $r(f+l)/2$. A run that starts right after a wrap has
+$f=y_{\rm prev}+\nu-1\in[0,\nu)$ (because $y_{\rm prev}<1\le y_{\rm prev}+\nu$), so its sum is less than $r(1+\nu)/2$. Only
+the first run may start higher; its sum is $r(2l-(r-1)\nu)/2<r(2-(r-1)\nu)/2=r(1+\nu)/2+(r-r^2\nu)/2$, and
+$(r-r^2\nu)/2\le1/(8\nu)$ for every real $r$. The run lengths add up to $n$.
+\end{proof}
+
+The constant $1/(8\nu)$ cannot be lowered: it is attained in the limit by one run of length $1/(2\nu)$ that starts just
+below $1-(r-1)\nu$.
+
+\emph{The rows treated below} (ZC$'$ on $Z(\chi,\zeta,L)$; the waste of a stretch is the area of its stretch region minus
+the number of squares placed in it, as in Lemmas~\ref{lem:W}(f) and~\ref{lem:P3a}). The \emph{start rows}: if block $0$
+exists, the rows $J_{0,0}\le j\le\lfloor\chi\rfloor-1$; the first stretch of such a row runs from $x=0$ to the line
+$\lambda_0=s_0$. The \emph{final stretches}: if a block exists, the stretch of row $j$ ($0\le j<\lfloor r(L)\rfloor$)
+whose right end is $x=L$, together with the set $E_{\rm end}\cap\{Y\ge\lfloor r(L)\rfloor\}$ of Lemma~\ref{lem:P3}. These
+are exactly the stretches bounded in Lemma~\ref{lem:W}(f3) by $\lfloor\chi\rfloor(1+\frac12\taz)$ and in
+Lemma~\ref{lem:P3} by $r(L)(1+\frac12\taz)+w_e$.
+
+\begin{lemma}[sawtooth accounting]\label{lem:T1}
+Assume (W1)--(W6) and consider ZC$'$ on $Z(\chi,\zeta,L)$.
+\begin{enumerate}[label=(\alph*)]
+\item If block $0$ exists, the start rows have total waste at most $\lfloor\chi\rfloor(\frac12+\taz)+1/(8\taz)$.
+\item If at least one block exists, the final stretches together with $E_{\rm end}\cap\{Y\ge\lfloor r(L)\rfloor\}$ have total
+waste at most
+\[
+r(L)\bigl(\tfrac12+\taz+(\sez-1)\bigr)+\frac{\Kb+2}{8\nu_*}+\frac12\Bigl(2+N_0q_0+\frac{1+\zeta\taz}{q_{\min}}\Bigr)
++\frac12(1+\zeta L+\zeta w_e)+w_e .
+\]
+\item If no block exists, $U_Z<\lfloor\chi\rfloor+\zeta L+1+L$.
+\end{enumerate}
+\end{lemma}
+
+All three parts use ZC$'$ and the facts of Lemmas~\ref{lem:W}, \ref{lem:P3a} and~\ref{lem:P3} about it, hence (W1)--(W5).
+Beyond that, (a) uses (W5) ($0<\taz\le0.21$); (b) uses (W5), (W6) and (I1), (I2) of Lemma~\ref{lem:W}; (c) uses only
+the definitions and $\operatorname{area}(P_z)\le L$ from the proof of Lemma~\ref{lem:P3}.
+
+\begin{proof}
+(a) Let $j$ be a start row and $\ell_j:=s_0-(j+1)\taz$. Its stretch region is
+$\{j\le Y<j+1,\ X\ge0,\ X+Y\taz<s_0\}$; it lies in $Z$, as $X\le s_0\le L$ and $Y<j+1\le\lfloor\chi\rfloor\le r(X)$. In
+(Z4$'$) $a=0$ and $j+1\le\chi$, so $a^*=0$, and ZC$'$ places $[0,\lfloor\ell_j\rfloor]\times[j,j+1]$ if $\ell_j\ge1$. If
+$\ell_j\ge0$ the sections of the region have length $s_0-Y\taz$, so its area is $\ell_j+\frac12\taz$ and the waste is
+$\operatorname{frac}(\ell_j)+\frac12\taz$. If $\ell_j<0$: $s_0=M_0\taz$ and $M_0=F_0+\lfloor\chi\rfloor-1$, so
+$\ell_j\ge(F_0-1)\taz\ge-\taz$, the section at height $Y$ has length at most $\taz(1-(Y-j))$, and the waste (the area) is
+at most $\frac12\taz$. In all cases the waste is at most $\operatorname{frac}(\ell_j)+\frac12\taz$. The start rows form
+an integer interval of $n\le\lfloor\chi\rfloor$ rows, and $\ell_j=(s_0-\taz)-j\taz$ is an arithmetic progression; Lemma~\ref{lem:SL}
+with the sign $-1$, $\nu=\taz\in(0,0.21]$ and $\epsilon=0$ gives the total
+$n(1+\taz)/2+1/(8\taz)+n\taz/2\le\lfloor\chi\rfloor(\frac12+\taz)+1/(8\taz)$.
+
+(b) Let the blocks be $0,1,\dots,\beta_e$. Every block except the last is complete, and there are at most $\Kb$ complete
+blocks, so $\beta_e+1\le\Kb+1$. For $0\le j<\lfloor r(L)\rfloor$ the final stretch of row $j$ starts after the last block
+that blocks row $j$, and at $x=0$ if there is none. Let $R_\beta$ be the set of rows whose last blocking block is $\beta$,
+and $R_{\rm none}$ the set of rows blocked by no block; these are integer intervals and partition
+$\{0,\dots,\lfloor r(L)\rfloor-1\}$. Four classes:
+
+(F0) $j\in R_{\rm none}$. The final stretch is the whole row: $j+1\le J_{0,0}\le H(J_{0,0})\le\Gamma_{0,0}=r(0)=\chi$, so the
+region is the rectangle $[0,L]\times[j,j+1)$ inside $Z$, $a^*=0$, and the waste is less than $1$. By
+Lemma~\ref{lem:W}(a) for block $0$, $|R_{\rm none}|\le J_{0,0}<F_0+(1+\zeta\taz)/q_{\min}$, and
+$F_0\le\chi-N_0\caz-\saz<\chi-N_0+N_0q_0<2+N_0q_0$; so $|R_{\rm none}|<2+N_0q_0+(1+\zeta\taz)/q_{\min}$.
+
+(F1) $j\in R_\beta$ with $j<J_{\beta,\rm L}$ (for $\beta<\beta_e$ every $j\in R_\beta$, by Lemma~\ref{lem:W}(c)). Then
+$p:=p(j)\le P_\beta-1$, the left end is $a_j=\xi_{\beta,p}-j\tan\alpha_\beta\ge0$, the length is
+$\ell_j=L-a_j\ge\sec\alpha_\beta>0$, the region has area at most $\ell_j+\frac12\tan\alpha_\beta$, and, as in
+Lemma~\ref{lem:W}(f3), $j+1\le r(a_j)$; so by (O) the waste is at most
+$\operatorname{frac}(\ell_j)+\frac12\taz$. As in the derivation of (R) in Lemma~\ref{lem:W}(b) (which uses only
+$J_{\beta,i}=\lfloor A_\beta+i/B_\beta\rfloor$ for $i\le P_\beta-1$ and $j<J_{\beta,\rm L}$, so it holds for the last block as
+well), $p(j)=B_\beta(j+1-A_\beta)+f_j$ with $f_j\in[0,1)$, and modulo $1$
+\[
+\ell_j\equiv c_\beta'+j\nu_\beta+d_j,\qquad \nu_\beta:=\tan\alpha_\beta-\kappa_\beta,\quad d_j:=(1-f_j)(\sec\alpha_\beta-1)\in[0,\sez-1],
+\]
+with a constant $c_\beta'$. By (I1) and $q_\beta\le q_0$, $\nu_\beta\ge\varpi\taz-q_0^2/\zeta=\nu_*>0$, and
+$\nu_\beta\le\taz\le0.21$. Lemma~\ref{lem:SL} (sign $+1$, $\epsilon=\sez-1$) gives, for the $n_\beta$ rows of (F1) with last
+blocking block $\beta$, a total waste at most $n_\beta(\frac12+\taz+(\sez-1))+1/(8\nu_*)$.
+
+(F2) $j\in R_{\beta_e}$ with $j\ge J_{\rm L}:=J_{\beta_e,\rm L}$: the end rows of Lemma~\ref{lem:P3}, with
+$a_j=\hat\xi-j\ta$ ($\ta:=\tan\alpha_{\beta_e}$, $\hat\xi:=\hat\xi_{\beta_e}$). The conditions $a_j\ge0$ and
+$j+1\le r(a_j)$ are both upper bounds on $j$; let $j_1$ be the least $j\ge J_{\rm L}$ where one of them fails (or
+$\lfloor r(L)\rfloor$). (F2a) $J_{\rm L}\le j<j_1$ ($n'$ rows): $a_j^*=a_j$, the part (iii) of the proof of
+Lemma~\ref{lem:P3} is empty, the part (i) is $[a_j,L]\times[j,j+1)$ with waste $\operatorname{frac}(L-a_j)$, and the part (ii)
+has area at most $\frac12\taz$; $L-a_j=(L-\hat\xi)+j\ta$ is an arithmetic progression with step $\ta\in[\varpi\taz,\taz]$
+and $\varpi\taz\ge\nu_*$, so Lemma~\ref{lem:SL} gives at most $n'(\frac12+\taz)+1/(8\nu_*)$. (F2b) $j_1\le j<\lfloor r(L)\rfloor$
+($n_{\rm tail}$ rows): the parts (i) and (ii) waste less than $1+\frac12\taz$, and the parts (iii) lie in
+$P_z\cap E_{\rm end}$. If $a_{j_1}\ge0$ and $j_1+1>r(a_{j_1})$, then, as $L-\hat\xi<1+\sez$ and $j_1<r(L)$,
+$a_{j_1}>\hat\xi-r(L)\taz>L-w_e$, so $j_1+1>r(L)-\zeta w_e$ and $n_{\rm tail}<\zeta w_e+1$. If $a_{j_1}<0$, then as in
+Lemma~\ref{lem:W}(f3)(ii) $j_1\ge\lfloor\chi\rfloor$ and $n_{\rm tail}<\zeta L+1$. So $n_{\rm tail}<1+\zeta L+\zeta w_e$. The parts
+(iii) of all end rows and $E_{\rm end}\cap\{Y\ge\lfloor r(L)\rfloor\}$ are disjoint subsets of $P_z\cap E_{\rm end}$, of area
+at most $w_e$ (proof of Lemma~\ref{lem:P3}).
+
+\emph{Summation.} Put $\bar q:=\frac12+\taz+(\sez-1)$. A row of (F0) wastes less than $1\le\bar q+\frac12$, and a row of
+(F2b) less than $1+\frac12\taz\le\bar q+\frac12$; the bounds of (F1) and (F2a) are at most (rows)$\,\bar q+1/(8\nu_*)$ per
+chunk, and there are at most $\beta_e+2\le\Kb+2$ chunks. As
+$|R_{\rm none}|+\sum_\beta n_\beta+n'+n_{\rm tail}=\lfloor r(L)\rfloor\le r(L)$, the total is at most
+$r(L)\bar q+(\Kb+2)/(8\nu_*)+\frac12|R_{\rm none}|+\frac12n_{\rm tail}+w_e$, which gives (b).
+
+(c) Every row $j<\lfloor r(L)\rfloor$ is one stretch from $0$ to $L$. Rows $j\le\lfloor\chi\rfloor-1$: the region is
+$[0,L]\times[j,j+1)$ and the waste is less than $1$. Rows $\lfloor\chi\rfloor\le j<\lfloor r(L)\rfloor$ (fewer than
+$\zeta L+1$): the part $X\ge a_j^*$ is a rectangle with waste less than $1$, and the part $X<a_j^*$ lies in $P_z$. The
+points with $Y\ge\lfloor r(L)\rfloor$ lie in $P_z$, and $\operatorname{area}(P_z)\le L$.
+\end{proof}
+
+\begin{lemma}[ZC$'$ with sawtooth accounting]\label{lem:W4}
+Under (W1)--(W6) the construction ZC$'$ does not fail, its pieces form a packing in $Z$, and
+\begin{multline*}
+U_Z\le B_{W4}:=Lc_{\rm col}+\Kb\Bigl[(N_0-1)(\varepsilon_W+\taz)+\frac{1+\zeta\taz}{q_{\min}}(1+\taz)+A_T'\Bigr]\\
++\lfloor\chi\rfloor\bigl(\tfrac12+\taz\bigr)+\frac1{8\taz}+w_0(1+\zeta w_0)+r(L)\bigl(\tfrac12+\taz+(\sez-1)\bigr)+\frac{\Kb+2}{8\nu_*}\\
++\frac12\Bigl(2+N_0q_0+\frac{1+\zeta\taz}{q_{\min}}\Bigr)+\frac12(1+\zeta L+\zeta w_e)+w_e+2(1+\taz).
+\end{multline*}
+\end{lemma}
+
+\begin{proof}
+Packing: Lemma~\ref{lem:P3a}. Bound, if a block exists: the partition (f) of Lemma~\ref{lem:W} for ZC$'$; the cells,
+aligned and unaligned closings as in (f1), (f3); the transition rows by Lemma~\ref{lem:P2}; the part of $E_0$ with
+$Y\ge\lfloor\chi\rfloor$ by $w_0(1+\zeta w_0)$; the start rows by Lemma~\ref{lem:T1}(a) in place of
+$\lfloor\chi\rfloor(1+\frac12\taz)$; the final stretches and $E_{\rm end}\cap\{Y\ge\lfloor r(L)\rfloor\}$ by
+Lemma~\ref{lem:T1}(b) in place of $r(L)(1+\frac12\taz)+w_e$. Every stretch is counted once, by its right end. The term
+$2(1+\taz)$ is not needed and is kept as slack. If no block exists, Lemma~\ref{lem:T1}(c) gives
+$U_Z<\lfloor\chi\rfloor+\zeta L+1+L$, while $B_{W4}\ge\lfloor\chi\rfloor+\zeta L+\frac32+w_e$ and $L<s_0+\sez\le w_e$.
+\end{proof}
+
 \subsection{The end packing}\label{ssec:E38}
 We use the band end $\Reg(y)$ of Section~\ref{sec:ends} with $\tan(\theta/2)=b/(b^2-1)$, and, as in
 Corollary~\ref{cor:b23}, $\mu:=\tan\theta$, $g(X):=y+(X-\sigma)\mu$, $g_0:=g(0)$, $\bar g:=g(w)$ and $\Delta:=w\mu$.
 
-\emph{Construction E38$(y)$.}
+\emph{Construction E38$(y)$.} It depends on three positive parameters $c_D$, $c_R$ (the wall widths) and $a_w$ (the wall
+tilt factor); version~1.0 used $c_D=c_R=4$ and $a_w=3/2$.
 \begin{enumerate}[label=(E\arabic*)]
-\item $m:=\lfloor\bar g\rfloor+1$, $D_\ell:=D_r:=\lfloor4m^{3/4}\rfloor$ and $g_D:=g(D_\ell)$.
+\item $m:=\lfloor\bar g\rfloor+1$, $D_\ell:=\lfloor c_Dm^{3/4}\rfloor$, $D_r:=\lfloor c_Rm^{3/4}\rfloor$ and $g_D:=g(D_\ell)$.
 \item \emph{Main tilt:} $t:=\lceil t^*Q\rceil/Q$ with $t^*=t^*(m,g_D)$ of Lemma~\ref{lem:tiltS} ($g_0$ replaced by
 $g_D$).
 \item \emph{Main columns:} $\xi_i:=D_\ell+m\ta+i\se$ for $0\le i<N:=\#\{i\ge0:\ \xi_i+\se\le w-D_r\}$,
@@ -1307,9 +1693,7 @@ the rows $J_0\le j<J_{\rm L}$; put $\ell_0:=\xi_{N-1}+\omega_m$.
 \item \emph{Main rows:} for $0\le j<J_{\rm L}$ let $p(j):=\#\{i:\ J_i\le j\}$, $a_j:=\xi_{p(j)}-j\ta$ and
 $a_j^+:=\ell_0-(j+1)\tau$; if $a_j^+-a_j\ge1$ place $[a_j,\,a_j+\lfloor a_j^+-a_j\rfloor]\times[j,j+1]$.
 \item \emph{Walls.} Each of the three regions below is filled by ZC with $t_0:=\lceil Q^*\tilde t\rceil/Q^*$, where
-$\tilde t$ is within relative error $10^{-12}$ of the tilt $t_{\rm tgt}$ with $\tan\alpha(t_{\rm tgt})=\frac32\sqrt\zeta$
-(since $d\log\ta/d\log t=(1+t^2)/(1-t^2)$, a relative error of at most $10^{-12}$ in $t$ gives a relative error of at
-most $\epsilon':=1.00001\cdot10^{-12}$ in $\ta$ whenever $t\le0.0014$, because then $(1+t^2)/(1-t^2)\le1.000004$), and
+$\tilde t$ is within relative error $10^{-12}$ of the tilt $t_{\rm tgt}$ with $\tan\alpha(t_{\rm tgt})=a_w\sqrt\zeta$, and
 mapped by an exact rotation by $\pm90^\circ$ and a translation:
 \begin{itemize}
 \item $Z_{\rm L}$: $\chi=\xi_0-g_0\ta$, $\zeta=\ta$, $L=g_0$, $(x,y)\mapsto(y,\,g_0-x)$; region
@@ -1320,11 +1704,29 @@ $\{X+Y\tau\ge\ell_0,\ Y\le J_{\rm L}\}$;
 $Y_u:=(g_0+\mu\xi_N)/(1+\mu\ta)$; region $\{\lambda\ge\xi_N,\ J_{\rm L}\le Y\le Y_u\}$.
 \end{itemize}
 \end{enumerate}
+\emph{The error of the wall tilts.} Put $\epsilon':=1.03\cdot10^{-12}$, $T_w:=a_w\sqrt\zeta\,(1+\epsilon')+\delta_Q$ and let
+$t_{\rm up}:=T_w/(1+\sqrt{1+T_w^2})$ be the tilt with $\tan\alpha(t_{\rm up})=T_w$ (the half-angle formula
+$t=\ta/(1+\se)$). Assume $t_{\rm up}<1/10$ (Corollary~\ref{cor:b35} checks this on every box, with a certified margin
+of at least $0.055$). As $a_w\sqrt\zeta\le T_w$ and $t\mapsto\ta$ is increasing, $t_{\rm tgt}<t_{\rm up}<1/10$. On
+$t\in(0,1/10]$ we have $d\log\ta/d\log t=(1+t^2)/(1-t^2)\le1.01/0.99<1.020203$; since
+$|\log(\tilde t/t_{\rm tgt})|\le-\log(1-10^{-12})\le1.0000000000006\cdot10^{-12}$ and the mean value theorem applies on
+the interval between $t_{\rm tgt}$ and $\tilde t$ (which lies in $(0,1/10]$, as $\tilde t\le t_{\rm tgt}(1+10^{-12})$), the
+relative error of $\tan\alpha(\tilde t)$ is at most $\exp(1.020203\cdot1.0000000000006\cdot10^{-12})-1\le1.0203\cdot10^{-12}
+\le\epsilon'$. Finally $\tan\alpha(t_0)\le\tan\alpha(\tilde t)+\delta_Q$, so
+\[
+\taz\in\bigl[a_w\sqrt\zeta\,(1-\epsilon'),\ a_w\sqrt\zeta\,(1+\epsilon')+\delta_Q\bigr],\qquad t_0\le t_{\rm up}<1/10 .
+\]
+(Version~1.0 used $t\le0.0014$ and $\epsilon'=1.00001\cdot10^{-12}$, which is valid only for very large $b$.)
+
+\emph{Construction E38$'(y)$} is E38$(y)$ with every wall filled by ZC$'$ (Section~\ref{ssec:refine}) instead of ZC.
+
 Here $\lambda=\lambda(X,Y)=X+Y\ta$ is the slab coordinate of the main tilt. Hypotheses:
 (E-i) $1<g_D<m$ and $t\le1/10$; (E-ii) $N\ge1$; (E-iii) $\ta-\kappa_m\ge\tan\alpha(1/Q^*)$, so that $\tau>0$;
-(E-iv) $\varepsilon_m+\tau<1$, where $\varepsilon_m:=(\se-1)+m\delta_Q+1/Q_f$; (E-v) each of the three walls satisfies
-(W1)--(W5), for $Z_{\rm LR}$ and $Z_{\rm UR}$ with $L$ replaced by the upper bound $m$ (which only strengthens (W2) and
-(W3)).
+(E-iv) $\varepsilon_m+\tau<1$, where $\varepsilon_m:=(\se-1)+m\delta_Q+1/Q_f$; (E-v) each of the three walls has
+$\chi\ge4$ and $t_{\rm up}<1/10$ and satisfies (W1)--(W5), for $Z_{\rm LR}$ and $Z_{\rm UR}$ with $L$ replaced by the
+upper bound $m$ (which only strengthens (W2) and (W3)). If (E-iii) fails, E38$(y)$ is not defined (the wall
+$Z_{\rm LR}$ would have $\zeta=\tau\le0$, outside Lemma~\ref{lem:W}); Lemma~\ref{lem:E38} and Corollary~\ref{cor:b35}
+assume (E-iii) and never use that case.
 
 \begin{lemma}[end lemma for the exponent $3/8$]\label{lem:E38}
 Under (E-i)--(E-v), E38$(y)$ is a packing in $\Reg(y)$, and its uncovered area satisfies
@@ -1333,7 +1735,12 @@ U(y)\le w\sa+wq+\Delta(\se+m\ta)+J_0(1+\ta)+J_{\rm L}(\varepsilon_m+\ta)+\tfrac1
 +U_{Z_{\rm L}}+U_{Z_{\rm LR}}+U_{Z_{\rm UR}},
 \end{multline*}
 where $h_{\rm L}:=\xi_0-g_0\ta$, $w_R:=w-\xi_N+\bar g\ta$, and each $U_Z\le B_W$ by Lemma~\ref{lem:W}.
+The same holds for E38$'(y)$, with each $U_Z\le B_W''$ by Lemma~\ref{lem:Wpp}.
 \end{lemma}
+
+The proof uses Lemma~\ref{lem:W} only through ``the pieces of a wall form a packing in the wall region and
+$U_Z\le B_W$'', and it uses the parameters only through $D_\ell,D_r\ge0$ (integers) and $t_0\in(0,1/10]$.
+So it applies verbatim to E38$'(y)$ with Lemma~\ref{lem:Wpp} in place of Lemma~\ref{lem:W}.
 
 \begin{proof}
 (a) \emph{Main staircase.} As in Lemma~\ref{lem:stair}(a), with $g_0$ replaced by $g_D$ and the shift $D_\ell$:
@@ -1381,134 +1788,382 @@ $U_{Z_{\rm L}}+U_{Z_{\rm LR}}+U_{Z_{\rm UR}}$ (the maps are isometries).
 \end{proof}
 
 \subsection{The band ends}\label{ssec:b35}
+A \emph{parameter row} consists of a threshold $b_0\ge10^4$, a window coefficient $c_y\in(0,3/4]$, wall widths
+$c_D,c_R>0$, a wall tilt factor $a_w>0$ and the proof parameter $\varpi\in(0,1)$ of Lemma~\ref{lem:W}.
+In the rows marked $\dagger$ the walls are filled by ZC$'$ (Lemma~\ref{lem:Wpp}) instead of ZC.
+The rows used in this paper are those of Table~\ref{tab:certtiers}; the row ``v1.0'' is the choice of version~1.0.
 
 \begin{corollary}\label{cor:b35}
-Let $b\ge b_0:=10^{16}$ be an integer, $\tan(\theta/2)=b/(b^2-1)$, and let $y$ be any real number with
+Let one row of Table~\ref{tab:certtiers} be given, with its constant $C_E$. Let $b\ge b_0$ be an integer,
+$\tan(\theta/2)=b/(b^2-1)$, and let $y$ be any real number with
 \[
-\tfrac1{12}b^{4/5}\le y\le\tfrac1{12}b^{4/5}+2 .
+c_yb^{4/5}\le y\le c_yb^{4/5}+2 .
 \]
-Let $Q$ be a power of $2$ with $Q\ge16b$. Then E38$(y)$ is a packing in $\Reg(y)$ with
+Let $Q$ be a power of $2$ with $Q\ge16b$. Then E38$(y)$
+(E38$'(y)$ in the rows marked $\dagger$)
+with the parameters $c_D$, $c_R$, $a_w$ of the row is a packing in $\Reg(y)$ with
 \[
-U(y)\le C_Eb^{3/5},\qquad C_E:=15.54,
+U(y)\le C_Eb^{3/5},
 \]
-and the end cost of Proposition~\ref{prop:waste} satisfies $E(y)=U(y)+\frac12\tan\theta\le15.54\,b^{3/5}+1.0001/b$.
+and the end cost of Proposition~\ref{prop:waste} satisfies $E(y)=U(y)+\frac12\tan\theta\le C_Eb^{3/5}+1.0001/b$.
 \end{corollary}
 
 \begin{proof}
 Put $z:=m^{-1/4}$.
 
-(i) \emph{Ranges.} By the band facts of Corollary~\ref{cor:b23}(i), $2/b<\mu\le2.000001/b$, $\Delta\le2.000001$,
+(i) \emph{Ranges.} By the band facts of Corollary~\ref{cor:b23}(i) (they need $b\ge10^4$; every $b_0$ of
+Table~\ref{tab:certtiers} is at least $10^{7.7}$), $2/b<\mu\le2.000001/b$, $\Delta\le2.000001$,
 $\sigma\mu\le4.1\cdot10^{-8}$ and $b-2.1/b\le w<b$. As $\bar g=y-\sigma\mu+\Delta\in(y,y+2.000001]$ and
-$m=\lfloor\bar g\rfloor+1$, we get $\frac1{12}b^{4/5}<m\le\frac1{12}b^{4/5}+5.000001$, $\delta:=m-g_0\le3.000001$ and
-$m-g_D\le\delta$. So $\hat b:=bz^5$ lies in $[12^{5/4}(1-5.000001z^4)^{5/4},\,12^{5/4}]$ and
-$z<12^{1/4}b^{-1/5}\le z_0:=12^{1/4}10^{-16/5}=0.0011743\ldots$; also $D_\ell z^3,D_rz^3\in[4-z^3,4]$. For the main tilt,
-Lemma~\ref{lem:tiltS} with $D'=m+g_D\ge2m-3.000001$, $\delta'=m-g_D\le3.000001$, and $t^*\ge\sqrt{\delta'/D'}$ with
-$D'\le2m$ and $\delta'>\bar g-g_D=(w-D_\ell)\mu\ge2(1-D_\ell/b-2.1/b^2)$, give
+$m=\lfloor\bar g\rfloor+1$, we get $c_yb^{4/5}<m\le c_yb^{4/5}+5.000001$, $\delta:=m-g_0\le3.000001$ and
+$m-g_D\le\delta$. From $m>c_yb^{4/5}\ge m-5.000001=m(1-5.000001z^4)$,
 \[
-\frac t{z^2}\in\Bigl[\sqrt{1-D_\ell/b-2.1/b^2},\ \frac{z^2+\sqrt{z^4+3.000001(2-3.000001z^4)}}{2-3.000001z^4}
+\hat b:=bz^5\in\bigl[c_y^{-5/4}(1-5.000001z^4)^{5/4},\ c_y^{-5/4}\bigr],\qquad
+z<c_y^{-1/4}b^{-1/5}\le z_0:=c_y^{-1/4}b_0^{-1/5},
+\]
+and $D_\ell z^3\in(c_D-z^3,c_D]$, $D_rz^3\in(c_R-z^3,c_R]$. \emph{Main tilt.} Let $D'=m+g_D$ and $\delta'=m-g_D$, so that
+$t^*=(1+\sqrt{1+D'\delta'})/D'$ (Lemma~\ref{lem:tiltS} with $g_D$ in place of $g_0$). From below,
+$t^*\ge\sqrt{\delta'/D'}$ with $D'\le2m$ and $\delta'>\bar g-g_D=(w-D_\ell)\mu\ge2(1-D_\ell/b-2.1/b^2)$, where
+$D_\ell/b\le c_Dz^2/\hat b$ and $2.1/b^2=2.1z^{10}/\hat b^2$. From above, $t^*$ is increasing in $\delta'$ and decreasing
+in $D'$ (proof of Lemma~\ref{lem:tiltS}); we substitute $D'\ge2m-3.000001$ and $\delta'\le3.000001$ directly into the
+formula for $t^*$ (not into the second bound of Lemma~\ref{lem:tiltS}) and use $t\le t^*+1/Q$ and $1/Q\le1/(16b)$. This
+gives
+\[
+\frac t{z^2}\in\Bigl[\sqrt{1-c_Dz^2/\hat b-2.1z^{10}/\hat b^2},\ \frac{z^2+\sqrt{z^4+3.000001(2-3.000001z^4)}}{2-3.000001z^4}
 +\frac{z^3}{16\hat b}\Bigr].
 \]
 Further $\kappa_m=q^2/\mu\le q^2b/2$ and $\tau\in[\ta-\kappa_m-\delta_Q,\ \ta-\kappa_m]$. Wall inputs: $Z_{\rm L}$:
 $\zeta=\ta$, $\chi\in[D_\ell,D_\ell+3.000001\ta]$, $L\le m$; $Z_{\rm LR}$: $\zeta=\tau$, $\chi\in[D_r+\se-1,D_r+2\se]$,
 $L=J_{\rm L}$; $Z_{\rm UR}$: $\zeta=\ta$, $\chi\in[D_r,D_r+\se+m\ta]$, $L=Y_u-J_{\rm L}$; and
-$J_{\rm L}+(Y_u-J_{\rm L})=Y_u\le\bar g<m$. Wall tilts: the target tilts satisfy
-$\tan\alpha(t_{\rm tgt})=\frac32\sqrt\zeta\le\frac32\sqrt{\ta}\le0.00276$ (as $\zeta\le\ta\le3.38\cdot10^{-6}$, see (iii)),
-so $t_{\rm tgt}\le0.0014$, and by (E6)
-$\taz\in[\frac32\sqrt\zeta(1-\epsilon'),\,\frac32\sqrt\zeta(1+\epsilon')+\delta_Q]$ with $\epsilon'=1.00001\cdot10^{-12}$. (E-i) is immediate:
-$m-3.000001\le g_0\le g_D\le\bar g<m$.
+$J_{\rm L}+(Y_u-J_{\rm L})=Y_u\le\bar g<m$. Wall tilts: by (E6),
+$\taz\in[a_w\sqrt\zeta(1-\epsilon'),\,a_w\sqrt\zeta(1+\epsilon')+\delta_Q]$ with $\epsilon'=1.03\cdot10^{-12}$, provided
+$t_{\rm up}<1/10$, which (iii) checks. (E-i): $m-3.000001\le g_0\le g_D\le\bar g<m$, and $g_D>1$ because
+$m>c_yb_0^{4/5}>10^5$ in every row.
 
-(ii) \emph{Normalisation.} Every term of Lemma~\ref{lem:E38} and of $B_W$ (with $\varpi=0.65$) is multiplied by
-$z^3=m^{-3/4}$ and rewritten in terms of $\hat b$, $t/z^2$, $\ta/z^2$, $\zeta/z^2$, $\chi z^3$, $Lz^4\in[0,1]$, $\taz/z$,
-$q_0/z^2$, $q_{\min}/z^2$, $N_0z^3$ and $\Lambda z^3$, so that only non-negative powers of $z$ occur; the complete list
-of normalised enclosures is in Appendix~\ref{app:enc} and in the program \texttt{cert3e.py} (for example
-$w\sa z^3\le2\hat b\,(t/z^2)$, $\Kb=(Lz^4)/(\Lambda z^3)\cdot z^{-1}$, and $J_0\le(4mt+2)/(Qq)$, because
-$H(0)=m\ca+\sa$ has $|dH/dt|\le4mt+2$ and $t-t^*\le1/Q$). For the two right walls the terms linear in $L$ are bounded
+(ii) \emph{Normalisation.} Every term of Lemma~\ref{lem:E38} and of $B_W$ (with the $\varpi$ of the row)
+(of $B_W''$ in the rows marked $\dagger$)
+is multiplied by $z^3=m^{-3/4}$ and rewritten in terms of $\hat b$, $t/z^2$, $\ta/z^2$,
+$\zeta/z^2$, $\chi z^3$, $Lz^4\in[0,1]$, $\taz/z$, $q_0/z^2$, $q_{\min}/z^2$, $N_0z^3$ and $\Lambda z^3$, so that only
+non-negative powers of $z$ occur. The complete list of the normalised inequalities is Appendix~\ref{app:enc}. For example
+$w\sa z^3\le\hat b\,\sa/z^2$, $\Kb=(Lz^4)/(\Lambda z^3)\cdot z^{-1}$, and $J_0\le(4mt+2)/(Qq)$, because
+$H(0)=m\ca+\sa$ has $|dH/dt|\le4mt+2$ and $t-t^*\le1/Q$. For the two right walls the terms linear in $L$ are bounded
 with the larger of the two coefficients (as $L_{\rm LR}+L_{\rm UR}\le m$) and the other terms are evaluated at $L=m$
-($B_W$ and the hypotheses (W2), (W3) are monotone in $L$).
+(the bounds of Lemmas~\ref{lem:W}
+and~\ref{lem:Wpp}
+and the hypotheses (W2), (W3) are non-decreasing in $L$).
 
-(iii) \emph{Interval evaluation.} $[0,z_0]$ is split into intervals and the range of $t/z^2$ into pieces; on each box
-all enclosures are evaluated in interval arithmetic. With $160\times64$ boxes and $120$-bit intervals the lower bounds of
-the margins are: $1/10-t\ge0.0999$; (E-ii) $\ge22.33$ (normalised by $z^5$); (E-iii) $\ge1.946$ (normalised by $z^2$);
-$1-\varepsilon_m\ge0.99999$; for each wall (W1) $\ge1.88$, (W2) $\ge0.1314$ (normalised by $z$), (W3) $\ge3.998$, (W4)
-$\ge0.99999$, (W5) $\ge1.36$ (normalised by $z$) and $1/10-t_0\ge0.097$; and $\Psi(z):=z^3\times$(the bound of
-Lemma~\ref{lem:E38}) satisfies $\Psi\le96.477$. Directly, $\varepsilon_m\le6.91\cdot10^{-6}$ (as
-$\se-1\le5.8\cdot10^{-12}$, $m\delta_Q\le\frac{2.1}{16}\cdot\frac mb\le6.902\cdot10^{-6}$ and $1/Q_f\le2^{-48}$) and
-$\tau\le\ta\le3.38\cdot10^{-6}$ (as $t\le1.2248z_0^2$), so $\varepsilon_m+\tau\le1.03\cdot10^{-5}<1$: (E-iv) holds.
+(iii) \emph{Interval evaluation.} $(0,z_0]$ is split into $N_Z$ equal intervals ($z=0$ included) and, on each, the range
+of $t/z^2$ from (i) into $N_T$ equal pieces; on each box all enclosures of Appendix~\ref{app:enc} are evaluated in
+interval arithmetic. On every box of the row the lower bounds of the following margins are positive: $1/10-t$; (E-ii);
+(E-iii); (E-iv) in the form $1-\varepsilon_m-\tau$; and, for each of the three walls, (W1)--(W5), $\chi-4$ and
+$1/10-t_{\rm up}$. The smallest margins and $\Psi_{\sup}$, the supremum over the boxes of the upper bound of
+$\Psi(z):=z^3\times$(the bound of Lemma~\ref{lem:E38}), are in Table~\ref{tab:certtiers}.
 
-(iv) By Lemmas~\ref{lem:E38} and~\ref{lem:W}, $U(y)\le\Psi_{\sup}m^{3/4}\le\Psi_{\sup}(\frac1{12}b^{4/5}+5.000001)^{3/4}
-\le\Psi_{\sup}12^{-3/4}(1+60.000012\,b_0^{-4/5})^{3/4}b^{3/5}$, and with $\Psi_{\sup}\le96.477$ this is at most
-$14.964\,b^{3/5}\le15.54\,b^{3/5}$. The relation between $E$ and $U$ is as in Corollary~\ref{cor:b23}(vi).
+(iv) By Lemma~\ref{lem:E38},
+\begin{align*}
+U(y)&\le\Psi_{\sup}m^{3/4}\le\Psi_{\sup}\bigl(c_yb^{4/5}+5.000001\bigr)^{3/4}\\
+&\le\Psi_{\sup}c_y^{3/4}\Bigl(1+\frac{5.000001}{c_yb_0^{4/5}}\Bigr)^{3/4}b^{3/5}=:C_E^{\rm cert}b^{3/5}\le C_Eb^{3/5}.
+\end{align*}
+For $c_y=1/12$ this is the factor $12^{-3/4}(1+60.000012\,b_0^{-4/5})^{3/4}$ of version~1.0. The relation between $E$ and
+$U$ is as in Corollary~\ref{cor:b23}(vi).
 \end{proof}
 
-\emph{Certification.} The author's own program (\texttt{mpmath.iv}, $40\times16$ boxes) gave $\Psi\le100.1875$ and
-$C_E\le15.5392$; this is the origin of $C_E=15.54$. It used the relative slack $10^{-12}$ on the wall tilts, which is
-too little ((E6) requires $\epsilon'=1.00001\cdot10^{-12}$), so it does not count as a certification. The constants in
-(iii) and (iv), and $C_E=15.54$, are certified by three independent full-range coverings written from the text of the
-proof, with different libraries: an independent reimplementation (\texttt{mpmath.iv}, $120$ bits, $160\times64$ boxes,
-slack $1.03\cdot10^{-12}$; $C_E\le14.964$, the values quoted in (iii); this is the program \texttt{cert3e.py} included
-with this text), a review (\texttt{mpmath.iv}, $200\times64$ boxes, slack $1.00001\cdot10^{-12}$; $C_E\le14.963$), and a
-second review (\texttt{python-flint} arb, slack $1.0001\cdot10^{-12}$; $C_E\le14.9631$). All three use a slack
-$\epsilon'\ge1.00001\cdot10^{-12}$ and give $C_E\le14.964$. In the two \texttt{mpmath.iv} coverings the smallest
-normalised margin is that of (W2). At the worst box of the $160\times64$ covering the bound splits as column triangles $54.71$, other main terms
-$0.01$, left wall $16.61$ and right walls $25.14$ (in units of $m^{3/4}$). Exponent bookkeeping: the triangles cost about
+\begin{table}[ht]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.9pt}
+\begin{tabular}{lllllllrrrrrr}
+\toprule
+row & $b_0$ & $c_y$ & $c_D=c_R$ & $a_w$ & $\varpi$ & boxes & $\Psi_{\sup}$ & $C_E^{\rm cert}$ & $C_E$ & (E-iii) & (W2) &
+$t_{\rm up}$\\
+\midrule
+B1$^\dagger$ & $10^{7.7}$ & $0.170157$ & $2.92683$ & $1.25781$ & $0.65$ & $320\times128$ & $65.9031$ & $17.46022$ & $17.461$ & $0.592$ & $0.0173$ & $0.0558$\\
+B1s$^\dagger$ & $10^{7.9}$ & $0.16$ & $2.92683$ & $1.26$ & $0.65$ & $320\times128$ & $67.0681$ & $16.96722$ & $16.968$ & $0.593$ & $0.0167$ & $0.0590$\\
+B2$^\dagger$ & $10^{8}$ & $0.154681$ & $2.92683$ & $1.26562$ & $0.65$ & $320\times128$ & $67.7915$ & $16.72079$ & $16.721$ & $0.584$ & $0.0141$ & $0.0603$\\
+A1 & $10^{8.5}$ & $0.133923$ & $2.90865$ & $1.13636$ & $0.681818$ & $320\times128$ & $85.6481$ & $18.96099$ & $18.961$ & $0.611$ & $0.0144$ & $0.0706$\\
+A1s & $10^{8.58}$ & $0.131625$ & $2.90865$ & $1.13636$ & $0.681818$ & $320\times128$ & $85.6691$ & $18.72102$ & $18.722$ & $0.631$ & $0.0146$ & $0.0716$\\
+A2 & $10^{9}$ & $0.116939$ & $2.90909$ & $1.13636$ & $0.681818$ & $320\times128$ & $87.6231$ & $17.52222$ & $17.523$ & $0.661$ & $0.0156$ & $0.0759$\\
+A3 & $10^{10}$ & $0.0957429$ & $2.61999$ & $1.13$ & $0.65$ & $320\times128$ & $92.1363$ & $15.85845$ & $15.859$ & $0.926$ & $0.0157$ & $0.0841$\\
+A4 & $10^{12}$ & $0.0769401$ & $2.60016$ & $1.13$ & $0.65$ & $320\times128$ & $101.1582$ & $14.77799$ & $14.778$ & $1.606$ & $0.0145$ & $0.0933$\\
+A5 & $10^{16}$ & $0.0838149$ & $2.86364$ & $1.25$ & $0.65$ & $320\times128$ & $90.8528$ & $14.15237$ & $14.153$ & $1.947$ & $0.0156$ & $0.0988$\\
+\midrule
+v1.0 & $10^{16}$ & $1/12$ & $4$ & $3/2$ & $0.65$ & $160\times64$ & $96.4769$ & $14.96365$ & $15.54$ & $1.946$ & $0.1314$ & $0.0986$\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{The parameter rows of Corollary~\ref{cor:b35} and the values of the author's covering. $\Psi_{\sup}$ and
+$C_E^{\rm cert}$ are upper bounds, rounded up; $C_E$ is the constant used in Corollary~\ref{cor:b35} and
+Theorem~\ref{thm:main38}. The last three columns are lower bounds over all boxes, rounded down, of the margins (E-iii)
+(normalised by $z^2$), (W2) (normalised by $z$, smallest of the three walls) and $1/10-t_{\rm up}$ (smallest of the three
+walls). The margin $1-\varepsilon_m-\tau$ is at least $0.9969$, and all other margins are positive on every box.
+Rows marked $\dagger$ use ZC$'$ and Lemma~\ref{lem:Wpp}.
+The row v1.0 is the parameter choice of version~1.0; its $C_E=15.54$ is that of [U].}\label{tab:certtiers}
+\end{table}
+
+\emph{Certification.} The values of Table~\ref{tab:certtiers} were computed by the author's program
+\texttt{cert\_v3.py} (\texttt{mpmath.iv}, $120$ bits; for each row $320\times128$ boxes, run in two slices of $160$
+$z$-intervals), and merged by \texttt{finalize\_v3.py}, which checks that the slices cover every box exactly once and
+checks the stated constants of Theorem~\ref{thm:main38} in interval arithmetic. With the row v1.0 ($160\times64$ boxes)
+the program reproduces $\Psi_{\sup}=96.47689\ldots$ and $C_E^{\rm cert}\le14.96365$ of the program \texttt{cert3e.py} of
+version~1.0, which was written independently. The constants are certified by the author's covering and by three
+coverings written independently from the text: two by verification agents (\texttt{mpmath.iv} and \texttt{python-flint}
+arb) and one by a reviewer (\texttt{mpmath.iv}), and all three implement the same normalised inequalities (the list of Appendix~\ref{app:enc}), so they check the arithmetic and the coverage but are only a weak check of the transcription of these inequalities from the lemmas; the point checks of the un-normalised formulas (at \(90\), \(120\) and \(5850\) points) partly address that. The reviewer's covering uses the same boxes and reproduces $\Psi_{\sup}$,
+$C_E^{\rm cert}$ and the margins of every row to the printed digits, and the worst-box split to within one unit in the
+last printed digit; the two other coverings use
+adaptive subdivisions and give slightly smaller values of $C_E^{\rm cert}$ (see ``Verification of version~1.1'' at the
+end of the paper). All programs were written by AI systems of the same family. In every row the worst box is the last
+$z$-interval ($b$ near $b_0$) at the top of the $t$-range; for the row A1s, for example, the bound splits there as column
+triangles $30.909$, other main terms $0.287$, left wall $23.608$ and right walls
+$30.867$ (in units of $m^{3/4}$). Exponent bookkeeping: the triangles cost about
 $bt\asymp bm^{-1/2}\asymp m^{3/4}$ (as $m\asymp b^{4/5}$), and each wall about
-$L\taz+\Kb N_0\taz+\Kb/q_{\min}+2\chi\asymp m^{3/4}$, with $\taz\asymp m^{-1/4}$, $\chi\approx4m^{3/4}$ and
+$L\taz+\Kb N_0\taz+\Kb/q_{\min}+2\chi\asymp m^{3/4}$, with $\taz\asymp m^{-1/4}$, $\chi\asymp m^{3/4}$ and
 $\Kb\asymp m^{1/4}$.
 
-\emph{Why $b_0=10^{16}$.} Hypothesis (E-iii) ($\tau>0$, where $\kappa_m/\ta\approx76\,b^{-1/5}$) fails below about
-$b=3\cdot10^9$, and for smaller $b_0$ the certified constant grows (about $16.7$ for $b_0=10^{12}$ and $19.2$ for
-$b_0=10^{10}$). As $b\to\infty$ the certified bound of this proof tends to about $14.6$ (a covering with a fine
-subdivision of the $t$-range and $b_0=10^{60}$ gives $14.61$); this reflects the crude estimates of Lemma~\ref{lem:W},
-not $\cs(k)$.
+\emph{Why these thresholds.} The threshold $k_i$ enters the proof only through $b_*\ge b_0$
+(Section~\ref{ssec:proofthm38}); the other size conditions (the band facts, the room for the lifts, $\lambda'<1$,
+$Q\ge16b$) hold far below. With the parameters of version~1.0 (window coefficient $1/12$, $c_D=c_R=4$, $a_w=3/2$) the
+hypothesis that fails for smaller $b_0$ is (E-iii), $\tau>0$: $\kappa_m/\ta$ is about $1.84\,c_y^{-3/2}b^{-1/5}$ (about
+$76\,b^{-1/5}$ for $c_y=1/12$), and the covering fails for $b$ below about $2.7\cdot10^9$. A larger window coefficient
+removes this obstruction (the threshold of (E-iii) on the covering scales like $20.9\,c_y^{-15/2}$), at the price of
+larger column triangles; this is why the rows of Table~\ref{tab:certtiers} have $c_y$ between $0.0769$ and $0.1702$.
+This threshold is only a rough scale for (E-iii) to hold on the whole window, as the covering requires; for a single
+lift $y$, whether $\tau>0$ depends on $y$ (through $m-g_D$) and is not monotone in $b$, and aligned cuts inside the
+window occur far below this scale (Remark~\ref{rem:38exact}).
+For smaller $b_0$ the remaining cost is the growth of $C_E$ with $z_0$: the terms of $B_W$ of order $m^{1/2}$, in units
+of $m^{3/4}$, are of order $z$ with large coefficients.
+Lemmas~\ref{lem:P2} and~\ref{lem:P3} reduce these coefficients: for the row B2 with $B_W$ in place of $B_W''$ an
+independent covering gives $C_E^{\rm cert}\approx22.50$ instead of $16.72$.
+Hypothesis (W2) is not the obstruction to small $b_0$, but it is the binding constraint of the parameter choice: the
+rows were found by a local search under the side condition that the normalised margin of (W2) be at least $0.012$ on a
+coarser cover, which costs about $1.4\%$ in $C_E$ or less compared with the best parameters found without it. The
+parameters are not optimised further, and the per-row bounds of Lemma~\ref{lem:W} remain crude. With the parameters of
+version~1.0 the certified bound tends to about $14.6$ as $b_0\to\infty$; this reflects the estimates of the proof, not
+$\cs(k)$.
+
+\subsection{Lifts with \texorpdfstring{$\operatorname{frac}(\bar g)\ge1/2$}{frac(g)>=1/2} and the tiers marked \texorpdfstring{$\ddagger$}{double dagger}}\label{ssec:liftT2}
+This subsection is new in version~1.1 and is used only by the tiers marked $\ddagger$. Choosing the lift of each band so
+that $\operatorname{frac}(\bar g)\ge1/2$ at both of its ends lowers $\delta=m-g_0$ from $3.000001$ to $2.500001$ and
+the main tilt accordingly.
+
+\emph{Band notation.} We use the strip frame of Section~\ref{sec:ends}: a band of length $L_b$, with $h$ and $d=\sec\theta$,
+a lift $y_0\ge0$ with $L_b\ge h+2y_0$, $R:=\lfloor(L_b-h-2y_0)/d\rfloor+1$ rows and $y_1:=L_b-h-(R-1)d-y_0\in[y_0,y_0+d)$;
+the bottom end is $\Reg(y_0)$ and the top end is the image of $\Reg(y_1)$. Both ends have the same function
+$\bar g(y)=y+c_0$ with $c_0:=(w-\sigma)\mu$, and $1<d<1.0001$ for $b\ge10^4$.
+
+\emph{Real lifts.} Up to here the lift was a quarter-integer. Lemma~\ref{lem:T2} below gives a real $y_0$ (rational for
+integer $b$ and $k$, but with no bounded denominator). Nothing in the results used depends on $y_0$ being a multiple of
+$1/4$ or lying on a grid: the strip frame of Section~\ref{sec:ends} takes any lift $y_0\ge0$ and any integer $R\ge1$ with
+$y_1\ge0$, and $\Reg(y)$ for any real $y\ge0$; Lemma~\ref{lem:ends} uses $L_b=y_0+y_1+(R-1)d+h$ and separating lines that
+are affine in $y_0$; Lemmas~\ref{lem:proj} and~\ref{lem:stack} hold for every base point; Corollary~\ref{cor:assembly} asks
+only $y_0\ge0$; the area $A_0(y)$ in Proposition~\ref{prop:waste} is affine in $y$, and the waste identity is an area
+decomposition, valid for real $y_0$, $y_1$. Lemma~\ref{lem:E38} and Corollaries~\ref{cor:b35}, \ref{cor:b35c} take any
+real $y$ in their windows; the grids $Q$, $Q^*$, $Q_f$ are grids of tilts and of phase offsets, not of heights. Two
+independent AI readings (one of them made without this text or the earlier reviews) checked the cited results line by
+line: they hold for every real lift and use no lattice, rationality or integrality; they need only (1) $y_0,y_1\ge0$,
+(2) $L_b\ge h+2y_0$, (3) $y\ge\sigma\mu$ at both ends for the area identity of Proposition~\ref{prop:waste} (below that
+only $E(y)\le U(y)+\frac12\tan\theta$ holds, which is the direction used), and (4) $\bar g(y)\le L_b$ at both ends. For the
+lift of Lemma~\ref{lem:T2} with $\alpha_0=c_yb^{4/5}$, as used in Section~\ref{ssec:proofthm38}, these hold: (1)
+$y_1\ge y_0\ge\alpha_0>0$; (2) is step (1) of the proof of Lemma~\ref{lem:T2}; (3) $y\ge\alpha_0\ge c_yb_0^{4/5}>8\cdot10^4$, while
+$\sigma\mu\le4.1\cdot10^{-8}$ by Corollary~\ref{cor:b23}(i); (4) $\bar g(y_0)\le\bar g(y_1)\le y_1+\Delta\le y_0+3.000001
+<h+2y_0+3<k-b\le L_b$ by the room argument of Section~\ref{ssec:proofthm38}. Moreover, the lemma is applied to each band
+separately: Lemma~\ref{lem:ends} and Proposition~\ref{prop:waste} are statements about one band, and
+Corollary~\ref{cor:assembly}, written there with one common $y_0$, uses of each band only that its squares lie in its
+region; so the two bands may have different lifts, and $k^2-N=(k^2-S^2)+\sum_{\text{2 bands}}[(R-1)\tan\theta+E(y_0)+E(y_1)]$
+holds with each band's own $y_0$, $y_1$, $R$.
+
+\begin{lemma}[lift choice]\label{lem:T2}
+Let $b\ge10^4$, a band $(L_b,h,d)$ as above, and $\alpha_0\ge0$ real with $L_b-h-1\ge2\alpha_0$. Then there is a real $y_0$
+with $\alpha_0\le y_0<\alpha_0+(d+1)/2$ such that, with $R$ and $y_1$ defined from $y_0$: $R\ge1$, $y_1-y_0\in\{0,1\}$, and
+\[
+\operatorname{frac}(\bar g(y_0))=\operatorname{frac}(\bar g(y_1))\ge\tfrac12 .
+\]
+In particular $y_0$ and $y_1$ lie in $[\alpha_0,\alpha_0+2.0001]$.
+\end{lemma}
+
+\begin{proof}
+For an integer $R\ge1$ put $S_R:=L_b-h-(R-1)d$, $K_R:=S_R+2c_0$, $\epsilon_R:=0$ if $\lfloor K_R\rfloor$ is odd and
+$\epsilon_R:=1$ if it is even, and $Y_R:=(S_R-\epsilon_R)/2$. (1) If $y_0:=Y_R$, then $L_b-h-2y_0=(R-1)d+\epsilon_R\in
+[(R-1)d,Rd)$ (as $0\le\epsilon_R\le1<d$), so the row count is $R$, $y_1=S_R-y_0=y_0+\epsilon_R$, and $L_b-h-2y_0\ge0$.
+(2) $\bar g(Y_R)=(K_R-\epsilon_R)/2$. The integer $n:=\lfloor K_R-\epsilon_R\rfloor$ is odd, and
+$\phi_R:=\operatorname{frac}(K_R-\epsilon_R)=\operatorname{frac}(K_R)$; so $\bar g(Y_R)=(n-1)/2+(1+\phi_R)/2$ with
+$(n-1)/2$ an integer and $(1+\phi_R)/2\in[1/2,1)$, that is $\operatorname{frac}(\bar g(y_0))=(1+\phi_R)/2\ge1/2$; and
+$\bar g(y_1)=\bar g(y_0)+\epsilon_R$. (3) $Y_R-Y_{R+1}=(d-\epsilon_R+\epsilon_{R+1})/2\in[(d-1)/2,(d+1)/2]$ with
+$(d-1)/2>0$, so $Y_R$ decreases strictly to $-\infty$ in steps of at most $(d+1)/2$. (4) $Y_1\ge(L_b-h-1)/2\ge\alpha_0$.
+Let $R^*:=\max\{R\ge1:\ Y_R\ge\alpha_0\}$ and $y_0:=Y_{R^*}$. Then $\alpha_0\le y_0\le Y_{R^*+1}+(d+1)/2<\alpha_0+(d+1)/2$, and
+$y_1\le y_0+1<\alpha_0+(d+3)/2<\alpha_0+2.00005$.
+\end{proof}
+
+The case $y_1=y_0+1$ is rare but covered by the proof. The bounds are nearly attained:
+$\operatorname{frac}(\bar g)=1/2$ occurs.
+
+\begin{corollary}\label{cor:b35c}
+Let one row of Table~\ref{tab:certC} be given: $b_0$, $c_y$, $c_D$, $c_R$, wall tilt factors $a_{w,\rm L}$,
+$a_{w,\rm LR}$, $a_{w,\rm UR}$, $\varpi$ and $C_E$. Let $b\ge b_0$ be an integer and $y$ real with
+\[
+c_yb^{4/5}\le y\le c_yb^{4/5}+2.0001\qquad\text{and}\qquad\operatorname{frac}(\bar g(y))\ge\tfrac12 .
+\]
+Let $Q$ be a power of $2$ with $Q\ge16b$. Then E38$'(y)$, with $D_\ell=\lfloor c_Dm^{3/4}\rfloor$,
+$D_r=\lfloor c_Rm^{3/4}\rfloor$ and in (E6) the factor $a_{w,\rm L}$ for $Z_{\rm L}$, $a_{w,\rm LR}$ for $Z_{\rm LR}$ and
+$a_{w,\rm UR}$ for $Z_{\rm UR}$, is a packing in $\Reg(y)$ with $U(y)\le C_Eb^{3/5}$, and
+$E(y)\le C_Eb^{3/5}+1.0001/b$.
+\end{corollary}
+
+Lemma~\ref{lem:E38} holds verbatim with a different factor $a_w$ for each wall (its proof does not use the value of
+$a_w$), and, if each wall also satisfies (W6), with each $U_Z\le B_{W4}$ of Lemma~\ref{lem:W4}, for the same reason as for
+$B_W''$.
+
+\begin{proof}
+As Corollary~\ref{cor:b35} (rows with $\dagger$), with Lemma~\ref{lem:W4} in place of Lemma~\ref{lem:Wpp} and these
+changes. (i) $\bar g=y-\sigma\mu+\Delta\in(y,y+2.000001]$; since $\operatorname{frac}(\bar g)\ge1/2$,
+$m=\lfloor\bar g\rfloor+1=\bar g+1-\operatorname{frac}(\bar g)\le\bar g+\frac12\le c_yb^{4/5}+4.500101$, and
+$m>\bar g>y\ge c_yb^{4/5}$; the covering uses $m\le c_yb^{4/5}+4.5002$, that is
+$\hat b\in[c_y^{-5/4}(1-4.5002z^4)^{5/4},c_y^{-5/4}]$. Further $\delta=m-g_0=1-\operatorname{frac}(\bar g)+\Delta\le2.500001$
+and $m-g_D\le\delta$; the formula for $t^*$ in Corollary~\ref{cor:b35}(i) is increasing in $m-g_D$, and with $2.500002$:
+\[
+\frac t{z^2}\le\frac{z^2+\sqrt{z^4+2.500002(2-2.500002z^4)}}{2-2.500002z^4}+\frac{z^3}{16\hat b}.
+\]
+(E-i) holds as $m-2.500001\le g_0\le g_D\le\bar g<m$ and $g_D>1$, since $m>c_yb_0^{4/5}>8\cdot10^4$ in every row of
+Table~\ref{tab:certC}; the band facts need $b\ge10^4$, and $b_0\ge10^{7.15}$ there. The lower end of the $t$-range and the
+wall inputs are as in Corollary~\ref{cor:b35} ($Z_{\rm L}$ keeps the wider enclosure
+$\chi\in[D_\ell,D_\ell+3.000001\ta]$); (E6) is applied to each wall with its own $a_w$. (ii) The normalised inequalities
+are those of Appendix~\ref{app:enc} with the replacements of Appendix~\ref{app:encC}. (iii) The covering checks, on every
+box, all margins of Corollary~\ref{cor:b35}(iii) and (W6) for each wall. (iv)
+$U(y)\le\Psi_{\sup}c_y^{3/4}(1+4.5002/(c_yb_0^{4/5}))^{3/4}b^{3/5}=:C_E^{\rm cert}b^{3/5}\le C_Eb^{3/5}$.
+\end{proof}
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\begin{tabular}{llrrrrrrrr}
+\toprule
+row & $b_0$ & $c_y$ & $\Psi_{\sup}$ & $C_E^{\rm cert}$ & $C_E$ & (E-iii) & (W2) & (W6) & $t_{\rm up}$\\
+\midrule
+C1$^\ddagger$ & $10^{7.3617}$ & $0.153846$ & $58.9138$ & $14.47251$ & $14.473$ & $0.482$ & $0.0162$ & $0.591$ & $0.0456$\\
+C2$^\ddagger$ & $10^{7.2}$ & $0.16$ & $58.5182$ & $14.80459$ & $14.805$ & $0.454$ & $0.0157$ & $0.572$ & $0.0420$\\
+C3$^\ddagger$ & $10^{7.15}$ & $0.165$ & $57.8716$ & $14.98288$ & $14.983$ & $0.494$ & $0.0156$ & $0.596$ & $0.0411$\\
+\bottomrule
+\end{tabular}
+\medskip
+\caption{The rows of Corollary~\ref{cor:b35c} (tiers marked $\ddagger$) and the values of the author's covering
+($320\times128$ boxes). All rows have $c_D=2.81426$, $c_R=3.00931$, $a_{w,\rm L}=1.26$, $a_{w,\rm LR}=1.3608$, $a_{w,\rm UR}=1.35403$ and $\varpi=0.65$. $\Psi_{\sup}$ and $C_E^{\rm cert}$ are upper bounds, rounded up; the
+last four columns are lower bounds of the margins (normalised as in Table~\ref{tab:certtiers}; (W6) normalised by $z$),
+rounded down. The margin $1-\varepsilon_m-\tau$ is at least $0.9961$, and all other margins are positive on every
+box.}\label{tab:certC}
+\end{table}
+
+\emph{Certification of the rows $\ddagger$.} The values of Table~\ref{tab:certC} were computed by the author's program
+\texttt{cert\_v4.py} (\texttt{mpmath.iv}, $120$ bits, $320\times128$ boxes per row in two slices); its merge step checks the
+cover of the boxes and, in interval arithmetic, the stated constants of Theorem~\ref{thm:main38}. They are certified by
+the author's covering and by three coverings written independently from the text: two by verification agents
+(\texttt{python-flint} arb: $C_E^{\rm cert}\le14.46634$, $14.79786$, $14.97606$; \texttt{mpmath.iv}: $14.469520$,
+$14.801342$, $14.979582$, for the rows C1, C2, C3) and one by a reviewer (\texttt{mpmath.iv}, which reproduces $14.47251$,
+$14.80459$, $14.982873$), all passing; all three implement the same normalised inequalities (Appendix~\ref{app:encC}),
+so they are only a weak check of the transcription of these inequalities from the lemmas. For $b_0\le b\le10^{16}$ this
+limitation is addressed by a direct covering (\texttt{python-flint} arb) of the un-normalised bound of Lemma~\ref{lem:E38}
+with $B_{W4}$, in the variables $(\log_2b,\operatorname{frac}(\bar g))$, with the integer quantities enclosed exactly on each
+box and the actual wall lengths $L$, without Appendix~\ref{app:encC} (only $J_0$ uses the inequality obtained from the mean
+value theorem in Corollary~\ref{cor:b35}(ii)): the certified suprema of $U/b^{3/5}$ are $13.910$ (C1), $14.235$ (C2) and
+$14.319$ (C3), all margins are positive, and at about $7.6\cdot10^4$ points per row the direct value is at most the
+normalised bound. For $b>10^{16}$ the normalised coverings apply. All programs were written by AI systems of the same
+family.
+The window coefficients $c_y$ were chosen by coarse coverings, and the wall parameters by a local search; they are not
+optimised further.
 
 \subsection{Proof of Theorem~\ref{thm:main38}}\label{ssec:proofthm38}
-Let $C_E:=15.54$, $k\ge k_1:=4\cdot10^{26}$, $b_*:=(5k/(3C_E))^{5/8}$ (so $k=\frac35C_Eb_*^{8/5}$) and $b:=\lceil b_*\rceil$.
-Since $\frac35C_E\cdot10^{128/5}\le3.712\cdot10^{26}\le k_1$, $b\ge b_*\ge10^{16}=b_0$. Take $\tan(\theta/2)=b/(b^2-1)$, so
-$w<b$ and $S:=k-b+w<k$, and use the packing of Corollary~\ref{cor:assembly} with
+Fix a tier $i$ of Table~\ref{tab:tiers}, its parameter row (Table~\ref{tab:certtiers}) with $b_0$, $c_y$ and
+$C_E:=C_{E,i}$, and an integer $k\ge k_i$. Put $b_*:=(5k/(3C_E))^{5/8}$ (so $k=\frac35C_Eb_*^{8/5}$) and
+$b:=\lceil b_*\rceil$. As $k\ge k_i\ge\frac35C_Eb_0^{8/5}$, $b\ge b_*\ge b_0$. Take $\tan(\theta/2)=b/(b^2-1)$, so $w<b$
+and $S:=k-b+w<k$, and use the packing of Corollary~\ref{cor:assembly} with
 \[
-y_0:=\tfrac14\bigl\lceil\tfrac13b^{4/5}\bigr\rceil\in\bigl[\tfrac1{12}b^{4/5},\ \tfrac1{12}b^{4/5}+\tfrac14\bigr]
+y_0:=\tfrac14\bigl\lceil4c_yb^{4/5}\bigr\rceil\in\bigl[c_yb^{4/5},\ c_yb^{4/5}+\tfrac14\bigr]
 \]
-and, in each band, $R:=\lfloor(L_b-h-2y_0)/d\rfloor+1$. As $h<3$ and $y_0\le k^{1/2}+1$, $h+2y_0<k-b\le L_b$; so $R\ge1$ and
-$y_1\in[y_0,y_0+d)$ with $d<1.0001$, and both lifts lie in the window of Corollary~\ref{cor:b35}. Fill the four end regions
-by Corollary~\ref{cor:b35} with $Q$ the least power of $2$ that is at least $16b$. As in Section~\ref{ssec:proofmain},
-by Corollary~\ref{cor:assembly} and Proposition~\ref{prop:waste},
+and, in each band, $R:=\lfloor(L_b-h-2y_0)/d\rfloor+1$. \emph{Room for the lifts:} $b\le b_*+1$ gives
+$b^{4/5}\le b_*^{4/5}+1=(5k/(3C_E))^{1/2}+1$, so $y_0\le c_y(5/(3C_E))^{1/2}k^{1/2}+c_y+\frac14\le k^{1/2}+1$, because
+$c_y(5/(3C_E))^{1/2}\le1$ and $c_y\le3/4$ (both hold in every row). As $h<3$ (Section~\ref{ssec:proofmain}),
+$h+2y_0<2k^{1/2}+5<k-b\le L_b$ (as $k\ge10^{13}$ and $b\le b_*+1\le k^{5/8}+1$, since $5/(3C_E)<1$); so $R\ge1$ and
+$y_1\in[y_0,y_0+d)$ with $d<1.0001$, and both lifts lie in the window of Corollary~\ref{cor:b35}. Fill the four end
+regions by Corollary~\ref{cor:b35} with $Q$ the least power of $2$ that is at least $16b$. As in
+Section~\ref{ssec:proofmain}, by Corollary~\ref{cor:assembly} and Proposition~\ref{prop:waste},
 \[
 k^2-N<\frac{4k}b+4C_Eb^{3/5}+\lambda',\qquad \lambda':=\frac{4k}{b(b^2-1)}+\frac{4kb}{(b^2-1)^2}+2\tan\theta\le
 \frac{8.001\,k}{b^3}+\frac{4.1}b .
 \]
-With $k\le\frac35C_Eb^{8/5}$ we get $8.001\,k/b^3\le8.001\cdot9.324\,b^{-7/5}<10^{-20}$ and $4.1/b<10^{-15}$, so $\lambda'<1$,
-and Lemma~\ref{lem:reduction} gives $\cs(k)\le k^2-N-1<4k/b+4C_Eb^{3/5}$. Finally $4k/b\le4k/b_*=\frac{12}5C_Eb_*^{3/5}$
-and $b^{3/5}\le b_*^{3/5}+\frac35b_*^{-2/5}\le b_*^{3/5}+\frac35\cdot10^{-32/5}$, so
+With $k\le\frac35C_Eb^{8/5}$ and $b\ge b_0$ we get $\lambda'\le8.001\cdot\frac35C_Eb_0^{-7/5}+4.1/b_0$; in interval
+arithmetic this bound is less than $1$ in every tier without $\ddagger$ (its largest value is about $8.32\cdot10^{-8}$, for the row with the
+smallest $b_0$); so $\lambda'<1$, and Lemma~\ref{lem:reduction} gives $\cs(k)\le k^2-N-1<4k/b+4C_Eb^{3/5}$. Finally
+$4k/b\le4k/b_*=\frac{12}5C_Eb_*^{3/5}$ and, by the mean value theorem, $b^{3/5}\le b_*^{3/5}+\frac35b_*^{-2/5}\le
+b_*^{3/5}+\frac35b_0^{-2/5}$, so
 \[
-\cs(k)<\frac{32}5C_Eb_*^{3/5}+\frac{12}5C_E\cdot10^{-32/5}
-=\frac{32}5\Bigl(\frac53\Bigr)^{3/8}C_E^{5/8}k^{3/8}+\frac{12}5C_E\cdot10^{-32/5}.
+\cs(k)<\frac{32}5C_Eb_*^{3/5}+\frac{12}5C_Eb_0^{-2/5}
+=\frac{32}5\Bigl(\frac53\Bigr)^{3/8}C_E^{5/8}k^{3/8}+\frac{12}5C_Eb_0^{-2/5}\le C_ik^{3/8}+a_i .
 \]
-In interval arithmetic $\frac{32}5(\frac53)^{3/8}15.54^{5/8}\in[43.05564,\,43.05565]$ and
-$\frac{12}5\cdot15.54\cdot10^{-32/5}\le1.49\cdot10^{-5}$, which gives Theorem~\ref{thm:main38}. \qed
+Here $\frac{32}5(\frac53)^{3/8}\approx7.751277$. The inequalities $C_i\ge\frac{32}5(\frac53)^{3/8}C_E^{5/8}$,
+$k_i\ge\frac35C_Eb_0^{8/5}$, $a_i\ge\frac{12}5C_Eb_0^{-2/5}$, the inequality ``bound on $\lambda'$ less than $1$'' and
+the two room conditions were checked in interval arithmetic for every tier without $\ddagger$ (\texttt{finalize\_v3.py}, which also prints
+the value of the bound on $\lambda'$). \qed
+
+\emph{Version~1.0.} The row v1.0 with $C_E=15.54$ gives, by the same argument, the theorem of version~1.0: in interval
+arithmetic $\frac{32}5(\frac53)^{3/8}15.54^{5/8}\in[43.05564,\,43.05565]$, $\frac35\cdot15.54\cdot10^{128/5}\le
+3.712\cdot10^{26}\le4\cdot10^{26}$ and $\frac{12}5\cdot15.54\cdot10^{-32/5}\le1.49\cdot10^{-5}$, so
+$\cs(k)<43.06\,k^{3/8}+2\cdot10^{-5}$ for every integer $k\ge4\cdot10^{26}$. It is superseded by the tier A5.
+
+\emph{The tiers marked $\ddagger$.} For these tiers the proof above is changed as follows. In each of the two bands
+(lengths $L_b=S$ and $L_b=k-b$) take the lift $y_0$ of Lemma~\ref{lem:T2} with $\alpha_0:=c_yb^{4/5}$, instead of
+$\frac14\lceil4c_yb^{4/5}\rceil$; the two bands may get different lifts (Section~\ref{ssec:liftT2}). Then $y_0$ and $y_1$
+lie in $[c_yb^{4/5},c_yb^{4/5}+2.0001]$ and $\operatorname{frac}(\bar g(y_0))=\operatorname{frac}(\bar g(y_1))\ge1/2$,
+so Corollary~\ref{cor:b35c} applies to all four ends. \emph{Room:} $\alpha_0\le c_y(5/(3C_E))^{1/2}k^{1/2}+c_y\le k^{1/2}+\frac34$,
+and Lemma~\ref{lem:T2} needs $L_b-h-1\ge2\alpha_0$, which holds as $L_b\ge k-b$, $h<3$, $b\le k^{5/8}+1$ and $k\ge10^{12}$
+(every $k_i$ of a tier $\ddagger$ is at least $10^{12}$, checked). Then $y_0<\alpha_0+(d+1)/2\le k^{1/2}+1.76$,
+$h+2y_0+3<2k^{1/2}+9.6<k-b\le L_b$, and each end region lies in its band. The count, the bound $\lambda'<1$ (checked in
+interval arithmetic by the merge step of \texttt{cert\_v4.py}, together with the stated constants, the room conditions and
+$k_i\ge10^{12}$; its largest value is about $2.97\cdot10^{-7}$) and the final inequality are as above, with the $C_E$
+of the tier.
 
 \begin{remark}[what the explicit computations test]\label{rem:38exact}
-The asymptotic regime of Corollary~\ref{cor:b35} ($b\ge10^{16}$, $k\ge4\cdot10^{26}$) cannot be tested by explicit
-computation: one end has about $10^{16}$ pieces. The constants are certified by interval arithmetic only. The explicit
-checks test the validity of the construction and of Lemmas~\ref{lem:W} and~\ref{lem:E38} at smaller $b$. The
-construction was implemented in exact rational arithmetic and checked by an exact checker that does not use the lemmas
-(shapes, containment, separating axis tests for all pairs with overlapping bounding boxes): for $b=1600,\dots,409600$ and
-five lifts each in the window of Corollary~\ref{cor:b35} (all $25$ pass; there the cut is not aligned, as (E-iii) needs
-$b\gtrsim3\cdot10^9$, so these runs test validity only), at lifts outside the window where the cut is aligned (all pass,
-with the residuals of (R) attained to $4$--$5$ digits), and for the wall filler alone on $Z(4m^{3/4},\zeta,m)$ for $m$ up to
-$10^4$ (certified) and $2.56\cdot10^6$ (exact internal checks of Lemma~\ref{lem:W}), with $U_Z\le B_W$ in every case.
-Deliberately corrupted packings were rejected. Two blank-slate AI reviews and an independent reimplementation, each with
-its own programs written from the text, found no counterexample (over $500$ wall fillers, chains of up to $118$ blocks,
-end packings up to $b=10^7$). The program \texttt{run\_z.py} included with this text builds the wall filler for
-$m=10^4$, $\zeta=0.5/\sqrt m$, $\chi=4m^{3/4}$, $L=m$ and certifies it: $3$ blocks, $25289$ pieces, $28402$ pairs decided
-exactly, no overlap, (W1)--(W5) hold, $7611$ aligned closings with largest residual $0.0056087\le\varepsilon_W=0.0056093$,
-and $U_Z=6712\le B_W\le19615$. Full exact counts with the construction of this section give $\cs(10^8)\le44299$,
-$\cs(10^{10})\le236005$ and $\cs(10^{11})\le547881$ (ends checked exactly); at $k=10^8$ this is worse than
-Theorem~\ref{thm:cert} ($24790$), and at such $k$ the closed form $43.06\,k^{3/8}$ must not be used.
+The range of Corollary~\ref{cor:b35} ($b\ge b_0\ge10^{7.7}$) has not been tested by explicit computation at the
+parameters of a tier and $b\ge b_0$; for Corollary~\ref{cor:b35c} only the $15$ end packings described at the end of the
+paper (b from $1.41\cdot10^7$ to $2.30\cdot10^7$, near $b_0$) were built. The constants are certified by interval
+arithmetic.
+The explicit checks test
+the validity of the construction and of the lemmas at smaller $b$. The construction E38 is defined only when (E-iii)
+holds; in some runs below (marked ``with $\tau:=0$'') we used the \emph{convention} $\tau:=0$, with the lower right wall
+filled by rows only, which is not part of the construction. Whether the cut is aligned ($\tau>0$) depends on $y$ and is
+not monotone in $b$.
+
+\emph{Version~1.0 checks.} The construction was implemented in exact rational arithmetic and checked by an exact checker
+that does not use the lemmas (shapes, containment, separating axis tests for all pairs with overlapping bounding boxes):
+for $b=1600,\dots,409600$ and five lifts each in the window of version~1.0 (all $25$ pass, with $\tau:=0$, so these runs
+test validity only), at lifts outside the window where the cut is aligned (all pass, with the residuals of (R) attained
+to $4$--$5$ digits), and for the wall filler alone on canonical regions for $m$ up to $10^4$ (certified) and
+$2.56\cdot10^6$ (exact internal checks of Lemma~\ref{lem:W}), with $U_Z\le B_W$ in every case. Deliberately corrupted
+packings were rejected. Two blank-slate AI reviews and an independent reimplementation of version~1.0 found no
+counterexample. The program \texttt{run\_z.py} builds the wall filler for $m=10^4$, $\zeta=0.5/\sqrt m$,
+$\chi=4m^{3/4}$, $L=m$ and certifies it: $3$ blocks, $25289$ pieces, $28402$ pairs decided exactly, no overlap, (W1)--(W5)
+hold, $7611$ aligned closings with largest residual $0.0056087\le\varepsilon_W=0.0056093$, and $U_Z=6712\le B_W\le19615$.
+Full exact counts with the construction of version~1.0 give $\cs(10^8)\le44299$, $\cs(10^{10})\le236005$ and
+$\cs(10^{11})\le547881$ (ends checked exactly); at $k=10^8$ this is worse than Theorem~\ref{thm:cert} ($24790$), and
+below $k_i$ the closed forms of Theorem~\ref{thm:main38} must not be used.
+
+\emph{Version~1.1 checks} (programs in \texttt{code/zc\_tests}). (a) E38 with the wall parameters of the tiers A1, A5 and
+A3 in windows $[c_yb^{4/5},c_yb^{4/5}+2]$ with $c_y=1/3$ or $1/2$ (not a tier's $c_y$) and an aligned cut, for
+$b=102400$, $204800$ and $409600$: five end packings with up to $4.8\cdot10^5$ pieces, all checked exactly (no overlap, no
+containment failure, the checker's $U$ equal to the construction's).
+(b) ZC$'$ on canonical walls, $m=3000,\dots,2.56\cdot10^6$: $U_Z\le B_W''$ in all eight cases (and $U_Z\le B_W$ for ZC), of which (W1)--(W5) hold in six ((W5) fails in two);
+exact certificates for $m\le10^4$; ZC$'$ places $1$--$25$ rows that ZC leaves empty. (c) E38$'$ with the wall parameters
+of the tiers B2 and B1s, $b=25600,\dots,204800$, aligned cut: four end packings with ZC$'$ walls and one with ZC walls
+for comparison, all checked exactly; at $b=102400$ the
+rule (Z4$'$) lowers $U$ from $16643$ to $12322$. (d) A blank-slate review implemented ZC$'$ from the text in exact
+arithmetic ($36$ walls, $m$ up to $1.6\cdot10^5$) and checked, besides validity, the exact partition identity of
+Lemma~\ref{lem:W}(f) and the per-row and per-block bounds of Lemmas~\ref{lem:P2} and~\ref{lem:P3}: no violation; three
+deliberately wrong placement rules were caught.
+An independent reimplementation of ZC, ZC$'$, E38, E38$'$ and the full L-shaped packing, written from the text alone,
+is described under ``Verification of version~1.1'' at the end of the paper.
+It includes aligned-cut tests inside the windows of the tiers B1, B1s and B2 at $b\approx1.5\cdot10^6$--$4\cdot10^6$,
+below $b_0$.
 \end{remark}
 
 \section{The certified packings}\label{sec:cert}
 
-\emph{Generation.} The end packings of Theorem~\ref{thm:cert} were produced by a variant of the construction of
+\emph{Generation.} The end packings of Theorem~\ref{thm:cert} were produced by a modification of the construction of
 Section~\ref{ssec:stairlemma} with tuned parameters: $b$ was chosen near the minimizer of a model of the total cost, and the lift $y_0$ (about
 $0.9\,b^{2/3}$) by a floating-point pre-scan; for each end the column length $m$ is $\lfloor\bar g\rfloor$ or $\lfloor\bar g\rfloor+1$,
 whichever leaves less uncovered area; the tilt is the least multiple $t$ of $2^{-40}$ with
@@ -1690,9 +2345,9 @@ E.~Daniel that has not been refereed gives $s(k^2-3)=k$ for $k\ge6$, that is $\c
 Together with Theorems~\ref{thm:main} and~\ref{thm:main38},
 \begin{align*}
 0.06\,k^{1/3}-1\ <\ \cs(k)\ &<\ 20.668\,k^{2/5}+0.623\qquad(k\ge3.5\cdot10^{17}),\\
-\cs(k)\ &<\ 43.06\,k^{3/8}+2\cdot10^{-5}\qquad(k\ge4\cdot10^{26}),
+\cs(k)\ &<\ 40.62\,k^{3/8}+1.4\cdot10^{-5}\qquad(k\ge3.4\cdot10^{26}),
 \end{align*}
-so $k^{1/3}\ll\cs(k)\ll k^{3/8}$ is what is proved: the upper bound by Theorem~\ref{thm:main38} of this paper and the
+and the other tiers of Theorem~\ref{thm:main38}; so $k^{1/3}\ll\cs(k)\ll k^{3/8}$ is what is proved: the upper bound by Theorem~\ref{thm:main38} of this paper and the
 lower bound in [T]. Neither exponent is claimed to be optimal; the true exponent is open
 (Section~\ref{sec:open}). The gap is large for moderate $k$: for $k=10^8$ the lower bounds above give only
 $\cs(k)\ge2$ ($\cs(k)\ge3$ with the result of Daniel), while Theorem~\ref{thm:cert} gives $\cs(k)\le24790$.
@@ -1731,65 +2386,145 @@ In the bound of Lemma~\ref{lem:stair}, the column triangles cost about $w\sin\al
 (the wedge rows and the ends of the layers) cost about $m$ each, with $m\asymp b^{2/3}$. Section~\ref{sec:38} reduces the
 cost of a wall of height $m$ from order $m$ to order $m^{3/4}$ (following ideas of [Bui, Sections~3--4]); then the best
 column length is $m\asymp b^{4/5}$, the end cost is $O(b^{3/5})$, and $\cs(k)=O(k^{3/8})$. The constants of
-Section~\ref{sec:38} are crude (the parameters $4$, $3/2$, $0.65$ and $1/12$ and several per-row bounds were not
-optimised).
+Section~\ref{sec:38} are crude: the parameter rows come from a local search, and several per-row bounds of
+Lemma~\ref{lem:W} were not optimised.
 \end{remark}
 
 \emph{Open problems.} The true exponent of $\cs(k)$ is open: it lies between $1/3$ ([T]) and $3/8$
 (Theorem~\ref{thm:main38}). We do not claim the true exponent, and we make no claim that $3/8$ is the best exponent
-obtainable from this frame or from known techniques. Better constants for Theorem~\ref{thm:main38}, and a smaller
-threshold than $4\cdot10^{26}$, would also be of interest. It would also be interesting to have a matching structure for the lower bound, or a direct argument that
+obtainable from this frame or from known techniques. Better constants for Theorem~\ref{thm:main38}, and smaller
+thresholds $k_i$, would also be of interest. It would also be interesting to have a matching structure for the lower bound, or a direct argument that
 some end cost of order $b^{\beta}$ with $\beta>0$ is unavoidable in this frame.
 
 \appendix
-\section{The normalised enclosures of Corollary~\ref{cor:b35}}\label{app:enc}
-This appendix lists the inequalities evaluated on each box in step (iii) of the proof of Corollary~\ref{cor:b35}; they
-are those of the program \texttt{cert3e.py} (functions \texttt{box} and \texttt{wall}). Put $z:=m^{-1/4}$ and
-$\tau_n:=t/z^2$. Enclosures of the inputs: $\hat b\in[12^{5/4}(1-5.000001z^4)^{5/4},\,12^{5/4}]$, $\mu b\in[2,2.000001]$,
-$\Delta\le2.000001$, $D_\ell z^3,D_rz^3\in[4-z^3,4]$, $\delta_Q\le g_qz^5$ with $g_q:=2.1/(16\hat b)$, and
-$1/Q_f\le f_qz^5$ with $f_q:=1/(16\hat b)$. With $t=\tau_nz^2$:
+\section{The normalised inequalities of Corollary~\ref{cor:b35}}\label{app:enc}
+This appendix lists all inequalities evaluated on each box in step (iii) of the proof of Corollary~\ref{cor:b35}, for a
+parameter row $(b_0,c_y,c_D,c_R,a_w,\varpi)$; they are those of the program \texttt{cert\_v3.py} (functions
+\texttt{box}, \texttt{wall} and \texttt{taurange}). For the row v1.0 they reduce to the list of version~1.0, except for
+the forms of (E-iv) and of the tilt condition of the walls, which are stated below. All quantities are intervals; an
+inequality ``$>0$'' or ``$\ge0$'' means that the lower end of the enclosure is positive or non-negative, and an upper
+bound means the upper end of the enclosure.
+
+\emph{Box and inputs.} $z:=m^{-1/4}\in[z_\ell,z_u]\subset[0,z_0]$ with $z_0:=c_y^{-1/4}b_0^{-1/5}$, and
+$\tau_n:=t/z^2\in[\tau_\ell,\tau_u]$, a piece of the range
 \[
-\frac{\ta}{z^2}=\frac{2\tau_n}{1-t^2},\quad \frac{\sa}{z^2}=\frac{2\tau_n}{1+t^2},\quad q_n:=\frac q{z^4}=\frac{2\tau_n^2}{1+t^2},
-\quad \frac{\se-1}{z^4}=\frac{2\tau_n^2}{1-t^2},\quad \frac{\kappa_m}{z^2}\le\frac{q_n^2\hat bz}{\mu b},
+\Bigl[\sqrt{1-c_Dz^2/\hat b-2.1z^{10}/\hat b^2},\ \frac{z^2+\sqrt{z^4+3.000001(2-3.000001z^4)}}{2-3.000001z^4}+\frac{z^3}{16\hat b}\Bigr]
 \]
+evaluated on $[z_\ell,z_u]$ (lower end of the first, upper end of the second). Enclosures:
+\begin{gather*}
+\hat b\in\bigl[c_y^{-5/4}(1-5.000001z^4)^{5/4},\ c_y^{-5/4}\bigr],\quad \mu b\in[2,2.000001],\quad \Delta\le2.000001,\\
+D_\ell z^3\in[c_D-z^3,c_D],\quad D_rz^3\in[c_R-z^3,c_R],\\
+\delta_Q\le g_qz^5,\ g_q\in[0,\,2.1/(16\hat b)],\qquad
+1/Q_f\le f_qz^5,\ f_q\in[0,\,1/(16\hat b)].
+\end{gather*}
+With $t=\tau_nz^2$:
+\begin{gather*}
+\frac{\ta}{z^2}=\frac{2\tau_n}{1-t^2},\quad \frac{\sa}{z^2}=\frac{2\tau_n}{1+t^2},\quad q_n:=\frac q{z^4}=\frac{2\tau_n^2}{1+t^2},\\
+\se=\frac{1+t^2}{1-t^2},\quad \frac{\se-1}{z^4}=\frac{2\tau_n^2}{1-t^2},\quad
+\frac{\kappa_m}{z^2}\le\frac{q_n^2\hat bz}{\mu b},
+\end{gather*}
 and $\tau/z^2\in[\ta/z^2-\kappa_m/z^2-g_qz^3,\ \ta/z^2-\kappa_m/z^2]$.
 
-\emph{Main part.} (E-i) $1/10-t>0$. (E-ii)
-$z^5(w-D_\ell-D_r-m\ta-\se)\ge\hat b(1-2.1z^{10}/\hat b^2)-(D_\ell z^3+D_rz^3)z^2-(\ta/z^2)z^3-\se z^5>0$. (E-iii)
-$\ta/z^2-\kappa_m/z^2-g_qz^3>0$. (E-iv) $1-\varepsilon_m>0$ with $\varepsilon_m\le((\se-1)/z^4)z^4+g_qz+f_qz^5$
-(together with the direct bound on $\tau$ in (iii)). The main terms of Lemma~\ref{lem:E38}, times $z^3$:
-$w\sa z^3\le\hat b\,\sa/z^2$; $wqz^3\le\hat bq_nz^2$; $\Delta(\se+m\ta)z^3\le\Delta(\se z^3+(\ta/z^2)z)$;
-$J_0z^3\le(4\tau_nz^2+2z^4)/(16\hat bq_n)$, times $1+(\ta/z^2)z^2$; $J_{\rm L}(\varepsilon_m+\ta)z^3\le
-((\se-1)/z^4)z^3+g_q+f_qz^4+(\ta/z^2)z$; $\frac12\mu h_{\rm L}^2z^3\le\mu b(h_{\rm L}z^3)^2z^2/(2\hat b)$ with
-$h_{\rm L}z^3\in[D_\ell z^3,D_\ell z^3+3.000001(\ta/z^2)z^5]$; and $\mu w_R^2z^3\le\mu b(D_rz^3+\se z^3+(\ta/z^2)z)^2z^2/\hat b$.
+\emph{Main part.}
+\begin{itemize}
+\item (E-i) $1/10-t>0$.
+\item (E-ii) $\hat b(1-2.1z^{10}/\hat b^2)-(D_\ell z^3+D_rz^3)z^2-(\ta/z^2)z^3-\se z^5>0$ (this is
+$z^5(w-D_\ell-D_r-m\ta-\se)$ from below).
+\item (E-iii) $\ta/z^2-\kappa_m/z^2-g_qz^3>0$.
+\item (E-iv) $1-\varepsilon_m-(\tau/z^2)z^2>0$ with $\varepsilon_m\le((\se-1)/z^4)z^4+g_qz+f_qz^5$.
+\item Main terms of Lemma~\ref{lem:E38}, times $z^3$: column triangles $w\sa z^3\le\hat b\,\sa/z^2$; and the other main
+terms: $wqz^3\le\hat bq_nz^2$; $\Delta(\se+m\ta)z^3\le\Delta(\se z^3+(\ta/z^2)z)$;
+$J_0(1+\ta)z^3\le\frac{4\tau_nz^2+2z^4}{16\hat bq_n}\bigl(1+(\ta/z^2)z^2\bigr)$;
+$J_{\rm L}(\varepsilon_m+\ta)z^3\le((\se-1)/z^4)z^3+g_q+f_qz^4+(\ta/z^2)z$;
+$\frac12\mu h_{\rm L}^2z^3\le\mu b\,(h_{\rm L}z^3)^2z^2/(2\hat b)$ with
+$h_{\rm L}z^3\in[D_\ell z^3,\ D_\ell z^3+3.000001(\ta/z^2)z^5]$; and
+$\mu w_R^2z^3\le\mu b\,(D_rz^3+\se z^3+(\ta/z^2)z)^2z^2/\hat b$.
+\end{itemize}
 
-\emph{Walls.} A wall with $\zeta_n:=\zeta/z^2$, $\chi_n:=\chi z^3$ and $L_n:=Lz^4\le1$ (upper value $1$ used) has
-$a_n:=\taz/z\in[\frac32\sqrt{\zeta_n}(1-\epsilon'),\ \frac32\sqrt{\zeta_n}(1+\epsilon')+g_qz^4]$,
-$\sez=\sqrt{1+a_n^2z^2}$, $\caz=1/\sez$, $(\sez-1)/z^2=a_n^2/(\sez+1)$, $q_{0,n}:=q_0/z^2=a_n^2/(\sez(\sez+1))$,
-$q_{\min,n}:=q_{\min}/z^2=(\varpi a_n)^2/(s_m(s_m+1))$ with $s_m=\sqrt{1+\varpi^2a_n^2z^2}$, $N_0z^3\in[\chi_n-2z^3,\chi_n-z^3]$,
-$\lfloor\chi\rfloor z^3\in[\chi_n-z^3,\chi_n]$, $r(L)z^3=\chi_n+\zeta_nL_nz$, $M_{\max}z^3=r(L)z^3+N_0z^3\,q_{0,n}z^2$,
-\[
-\Lambda z^3=\frac{q_{\min,n}N_0z^3-z-\zeta_na_nz^4}{\zeta_n},\qquad \Kb z=\frac{L_n}{\Lambda z^3},\qquad
+\emph{One wall.} A wall is given by $\zeta_n:=\zeta/z^2$, $\chi_n:=\chi z^3$ and $L_n:=Lz^4\le1$ (the value $L_n=1$ is
+used). Then
+\begin{gather*}
+a_n:=\taz/z\in\bigl[a_w\sqrt{\zeta_n}(1-\epsilon'),\ a_w\sqrt{\zeta_n}(1+\epsilon')+g_qz^4\bigr],\quad\epsilon'=1.03\cdot10^{-12},\\
+\sez=\sqrt{1+a_n^2z^2},\quad \caz=1/\sez,\quad \frac{\sez-1}{z^2}=\frac{a_n^2}{\sez+1},\\
+q_{0,n}:=\frac{q_0}{z^2}=\frac{a_n^2}{\sez(\sez+1)},\\
+q_{\min,n}:=\frac{q_{\min}}{z^2}=\frac{(\varpi a_n)^2}{s_m(s_m+1)},\quad s_m=\sqrt{1+\varpi^2a_n^2z^2},\\
+N_0z^3\in[\chi_n-2z^3,\chi_n-z^3],\quad \lfloor\chi\rfloor z^3\in[\chi_n-z^3,\chi_n],\quad
+r(L)z^3=\chi_n+\zeta_nL_nz,\\
+M_{\max}z^3=r(L)z^3+N_0z^3\,q_{0,n}z^2,\\
+\Lambda z^3=\frac{q_{\min,n}N_0z^3-z-\zeta_na_nz^4}{\zeta_n},\quad \Kb z=\frac{L_n}{\Lambda z^3},\\
 \frac{\varepsilon_W}{z^2}=\frac{\sez-1}{z^2}+N_0z^3\,g_q+f_qz^3 .
-\]
-The hypotheses, normalised: (W1) $\Lambda z^3-N_0z^3\,a_nz\ge0$;
-(W2) $(1-\varpi)a_n-\Delta_{\rm dr}/z>0$ with $\Delta_{\rm dr}/z=\frac{q_{0,n}}{N_0z^3}\bigl(L_n+\Kb z\,(1+\zeta_na_nz^3)z/\zeta_n\bigr)
-+\Kb z\,g_qz^3$;
-(W3) $N_0z^3\caz-z^3\bigl(\zeta_n\sez/q_{\min,n}+a_nz+\zeta_nz^2(2+\sez)+\zeta_nM_{\max}z^3a_n\bigr)-z(1+\zeta_na_nz^3)/q_{\min,n}\ge0$;
-(W4) $1-(\varepsilon_W/z^2)z^2>0$; (W5) $\varpi a_n-g_qz^4\ge0$ and $a_nz\le1/10$.
-The bound: $B_Wz^3\le\alpha L_n+R$ with
-$\alpha:=c_{\rm col}/z+X/(\Lambda z^3)$, where
-$c_{\rm col}/z=a_n+\sez q_{0,n}z+\sez^2\zeta_nz+\sez\zeta_nN_0z^3\,q_{0,n}a_nz$,
-$X=(N_0z^3-z^3)((\varepsilon_W/z^2)z+a_n)+(1+\zeta_na_nz^3)(1+a_nz)/q_{\min,n}+h_T\,(w_Tz)\,z$,
-$h_T=1+\zeta_n\sez/q_{\min,n}+a_nz+\zeta_nz^2(1+\sez)+\zeta_nM_{\max}z^3a_n$,
-$w_Tz=z+(r(L)z^3+z^3)(q_{0,n}^2/\zeta_n+g_qz^3)$, and
-$R=\lfloor\chi\rfloor z^3(1+\frac12a_nz)+w_0z^3(1+\zeta_nz^2w_0)+r(L)z^3(1+\frac12a_nz)+(w_ez^2)z(4+2\zeta_nw_ez^2)$
-with $w_0=a_nz+N_0z^3\,q_{0,n}a_n$ and $w_ez^2=z^2(1+\sez)+r(L)z^3\,a_n+N_0z^3\,q_{0,n}a_nz^2$.
+\end{gather*}
+Margins of the wall:
+\begin{itemize}
+\item (W1) $\Lambda z^3-N_0z^3\,a_nz\ge0$ (positive on every box);
+\item (W2) $(1-\varpi)a_n-\Delta_{\rm dr}/z>0$ with
+$\Delta_{\rm dr}/z=\frac{q_{0,n}}{N_0z^3}\bigl(L_n+\Kb z\,(1+\zeta_na_nz^3)z/\zeta_n\bigr)+\Kb z\,g_qz^3$;
+\item (W3) $N_0z^3\caz-z^3\bigl(\zeta_n\sez/q_{\min,n}+a_nz+\zeta_nz^2(2+\sez)+\zeta_nM_{\max}z^3a_n\bigr)
+-z(1+\zeta_na_nz^3)/q_{\min,n}\ge0$;
+\item (W4) $1-(\varepsilon_W/z^2)z^2>0$;
+\item (W5) $\varpi a_n-g_qz^4\ge0$;
+\item $\chi\ge4$: $\chi_n-4z^3\ge0$;
+\item the tilt condition $t_{\rm up}<1/10$ of (E6): $1/10-a_nz/(1+\sez)>0$, where $a_nz/(1+\sez)$ is the half-angle
+formula $t=\ta/(1+\se)$ evaluated on the enclosure of $a_nz$; this also gives $t_0\le1/10$ (the second half of (W5)).
+(Version~1.0 checked $a_nz\le1/10$ instead.)
+\end{itemize}
+The bound: $B_Wz^3\le\alpha L_n+R$ with $\alpha:=c_{\rm col}/z+X/(\Lambda z^3)$, where
+\begin{gather*}
+c_{\rm col}/z=a_n+\sez q_{0,n}z+\sez^2\zeta_nz+\sez\zeta_nN_0z^3\,q_{0,n}a_nz,\qquad X=X_1+X_2+X_3,\\
+X_1=(N_0z^3-z^3)\bigl((\varepsilon_W/z^2)z+a_n\bigr),\qquad X_2=(1+\zeta_na_nz^3)(1+a_nz)/q_{\min,n},\\
+h_T=1+\zeta_n\sez/q_{\min,n}+a_nz+\zeta_nz^2(1+\sez)+\zeta_nM_{\max}z^3a_n,\\
+w_Tz=z+(r(L)z^3+z^3)(q_{0,n}^2/\zeta_n+g_qz^3),
+\end{gather*}
+$X_3=h_T\,(w_Tz)\,z$ (this is $A_Tz^2$), and
+\begin{gather*}
+R=\lfloor\chi\rfloor z^3\bigl(1+\tfrac12a_nz\bigr)+w_0z^3(1+\zeta_nz^2w_0)+r(L)z^3\bigl(1+\tfrac12a_nz\bigr)+R_e,\\
+R_e=(w_ez^2)z\,(4+2\zeta_nw_ez^2),\\
+w_0=a_nz+N_0z^3\,q_{0,n}a_n,\qquad w_ez^2=z^2(1+\sez)+r(L)z^3\,a_n+N_0z^3\,q_{0,n}a_nz^2 .
+\end{gather*}
+For $B_W''$ (rows marked $\dagger$) two terms change:
+$X_3=(h_T+1)(1+a_nz)z^2+\bigl(2+\zeta_n(w_Tz)z+\zeta_na_nz^3+\zeta_n^2a_nz^5\bigr)\bigl((w_Tz)z+a_nz^3\bigr)$ (this is
+$A_T'z^2$ of Lemma~\ref{lem:P2}), and $R_e=(w_ez^2)z+2(1+a_nz)z^3$ (this is $(w_e+2(1+\taz))z^3$, Lemma~\ref{lem:Wpp}).
 
-The three walls use: $Z_{\rm L}$: $\zeta_n=\ta/z^2$, $\chi_n\in[D_\ell z^3,D_\ell z^3+3.000001(\ta/z^2)z^5]$;
+\emph{The three walls.} $Z_{\rm L}$: $\zeta_n=\ta/z^2$, $\chi_n\in[D_\ell z^3,\ D_\ell z^3+3.000001(\ta/z^2)z^5]$;
 $Z_{\rm LR}$: $\zeta_n=\tau/z^2$, $\chi_n\in[D_rz^3+((\se-1)/z^4)z^7,\ D_rz^3+2\se z^3]$; $Z_{\rm UR}$: $\zeta_n=\ta/z^2$,
 $\chi_n\in[D_rz^3,\ D_rz^3+\se z^3+(\ta/z^2)z]$. Finally
-$\Psi\le w\sa z^3+(\text{other main terms})+(\alpha+R)_{Z_{\rm L}}+\max(\alpha_{Z_{\rm LR}},\alpha_{Z_{\rm UR}})+R_{Z_{\rm LR}}+R_{Z_{\rm UR}}$.
+\[
+\Psi\le w\sa z^3+(\text{other main terms})+(\alpha+R)_{Z_{\rm L}}+\max\bigl(\alpha_{Z_{\rm LR}},\alpha_{Z_{\rm UR}}\bigr)
++R_{Z_{\rm LR}}+R_{Z_{\rm UR}},
+\]
+where the maximum is taken of the upper ends. $\Psi_{\sup}$ is the largest upper end over all boxes, and
+$C_E^{\rm cert}=\Psi_{\sup}c_y^{3/4}(1+5.000001/(c_yb_0^{4/5}))^{3/4}$ (upper end).
+
+\section{The normalised inequalities of Corollary~\ref{cor:b35c}}\label{app:encC}
+These are the inequalities of Appendix~\ref{app:enc} for the rows marked $\dagger$, with exactly the following
+replacements; they are those of the program \texttt{cert\_v4.py}.
+\begin{itemize}
+\item Inputs: $\hat b\in[c_y^{-5/4}(1-4.5002z^4)^{5/4},\ c_y^{-5/4}]$ (instead of $5.000001$); the upper end of the range of
+$\tau_n$ is
+\[
+\frac{z^2+\sqrt{z^4+2.500002(2-2.500002z^4)}}{2-2.500002z^4}+\frac{z^3}{16\hat b}
+\]
+(instead of $3.000001$); everything
+else as in Appendix~\ref{app:enc}, including $\chi_n\in[D_\ell z^3,D_\ell z^3+3.000001(\ta/z^2)z^5]$ for $Z_{\rm L}$.
+\item One wall: $a_w$ is $a_{w,\rm L}$, $a_{w,\rm LR}$ or $a_{w,\rm UR}$ for $Z_{\rm L}$, $Z_{\rm LR}$, $Z_{\rm UR}$, so that
+\[
+a_n\in\bigl[a_w\sqrt{\zeta_n}(1-\epsilon'),\,a_w\sqrt{\zeta_n}(1+\epsilon')+g_qz^4\bigr]
+\]
+and $t_{\rm up}$ are computed per wall. The new
+margin (W6), normalised by $z$: $\nu_*/z=\varpi a_n-q_{0,n}^2z/\zeta_n>0$.
+\item The bound: $B_{W4}z^3\le\alpha L_n+R$ with $\alpha$ as for $B_W''$ and $R=R_{\rm start}+R_{\rm end}+R_e$, where
+\begin{gather*}
+R_{\rm start}=\lfloor\chi\rfloor z^3\bigl(\tfrac12+a_nz\bigr)+\frac{z^2}{8a_n}+w_0z^3(1+\zeta_nz^2w_0),\\
+R_{\rm end}=r(L)z^3\Bigl(\tfrac12+a_nz+\frac{\sez-1}{z^2}z^2\Bigr)+\frac{(\Kb z)z+2z^2}{8\nu_*/z}
++\tfrac12\Bigl(N_0z^3\,q_{0,n}z^2+2z^3+\frac{z(1+\zeta_na_nz^3)}{q_{\min,n}}\Bigr)\\
++\tfrac12\bigl(z^3+\zeta_nL_nz+\zeta_n(w_ez^2)z^3\bigr),\qquad
+R_e=(w_ez^2)z+2(1+a_nz)z^3 .
+\end{gather*}
+\item $B_{W4}$, (W2) and (W3) are non-decreasing in $L$, and (W6) does not involve $L$; so $L_n=1$ is used as before, and
+$C_E^{\rm cert}=\Psi_{\sup}c_y^{3/4}(1+4.5002/(c_yb_0^{4/5}))^{3/4}$.
+\item Margins checked on every box: those of Appendix~\ref{app:enc} and, for each of the three walls, (W1)--(W6),
+$\chi-4$ and $1/10-t_{\rm up}$.
+\end{itemize}
 
 \section*{Verification status}
 \begin{itemize}
@@ -1811,15 +2546,26 @@ construction was tested in exact arithmetic, also by an independent reimplementa
 To our knowledge the proof has not appeared before; it deserves priority in a human review.
 \item Theorem~\ref{thm:main38} (Section~\ref{sec:38}) is proved in full; it uses Lemmas~\ref{lem:col}
 and~\ref{lem:tiltS}, Lemma~\ref{lem:reduction}, Lemmas~\ref{lem:proj}--\ref{lem:stack}, Lemma~\ref{lem:ends},
-Corollary~\ref{cor:assembly} and Proposition~\ref{prop:waste}. An earlier write-up of Section~\ref{sec:38} received two
-independent blank-slate AI reviews, with their own programs: one judged it correct after fixes, the other correct; all
-their fixes are included (the hypothesis (E-iv) in the form $\varepsilon_m+\tau<1$, two table values, the decomposition
-of the certified bound, and the reason for $b_0=10^{16}$). An independent reimplementation found no counterexample. The
-author's own interval program for Corollary~\ref{cor:b35} used too little slack on the wall tilts; the constant
-$C_E=15.54$ is certified by three independent full-range interval coverings ($C_E\le14.964$, $14.963$ and $14.9631$;
-\texttt{mpmath.iv} twice and \texttt{python-flint} arb once). The asymptotic regime ($b\ge10^{16}$) cannot
-be tested by explicit computation; the explicit checks cover the validity of the construction at smaller $b$
-(Remark~\ref{rem:38exact}). It deserves priority in a human review.
+Corollary~\ref{cor:assembly} and Proposition~\ref{prop:waste}.
+The tiers marked $\dagger$ also use Lemmas~\ref{lem:P3a}, \ref{lem:P2}, \ref{lem:P3} and~\ref{lem:Wpp}, which are new in
+version~1.1.
+The tiers marked $\ddagger$ also use Lemmas~\ref{lem:SL}, \ref{lem:T1}, \ref{lem:W4}, \ref{lem:T2} and
+Corollary~\ref{cor:b35c}, which are new in version~1.1.
+The write-up of Section~\ref{sec:38} of version~1.0 received two independent blank-slate AI reviews, with their own
+programs: one judged it correct after fixes, the other correct; all their fixes were included in version~1.0, and an
+independent reimplementation found no counterexample. The changes of version~1.1 received two further independent
+blank-slate AI reviews.
+Both judged the parameter part correct after minor fixes and the new lemmas of Section~\ref{ssec:refine} correct.
+All their fixes are included (among them the value of $\frac{32}5(\frac53)^{3/8}$, the rounding of the tables, the
+precise statement of two hypotheses, the derivation of the range of $t/z^2$, and the complete list of
+Appendix~\ref{app:enc}). The constants are certified by the author's covering and by three coverings
+written independently from the text: two by verification agents (\texttt{mpmath.iv} and \texttt{python-flint} arb) and
+one by a reviewer (\texttt{mpmath.iv}), and all three implement the same normalised inequalities (the lists of Appendices~\ref{app:enc} and~\ref{app:encC}), so they check the arithmetic and the coverage but are only a weak check of the transcription of these inequalities from the lemmas; the point checks of the un-normalised formulas (at \(90\), \(120\) and \(5850\) points) partly address that. All programs were written by AI systems of the same family. The constant
+$C_E=15.54$ of version~1.0 is certified by three independent full-range coverings ($C_E\le14.964$, $14.963$ and
+$14.9631$).
+The range $b\ge b_0$ has not been tested by explicit computation, except for $15$ end packings of the tiers $\ddagger$
+near $b_0$; the explicit checks cover the validity of the construction at smaller $b$ (Remark~\ref{rem:38exact}).
+It deserves priority in a human review.
 \item Theorem~\ref{thm:cert} is computer-assisted. Its finite part was checked by three programs, two of them written
 independently of the generating program (Section~\ref{sec:cert}).
 \item Section~\ref{sec:open} contains remarks only; Remarks~\ref{rem:37} and~\ref{rem:cg3} are not proved here.
@@ -1828,13 +2574,70 @@ independently of the generating program (Section~\ref{sec:cert}).
 AI systems of the same family, which may share blind spots.
 \end{itemize}
 
+\subsection*{Verification of version~1.1}
+The following checks of the changes of version~1.1 were made after the two reviews mentioned above. All programs were
+written by AI systems of the same family; none has been reviewed by a human.
+\begin{itemize}
+\item \emph{Independent covering 1} (verification agent; written from the text alone; \texttt{mpmath.iv}, $120$ bits):
+$512$ $z$-strips $\times$ $128$ $t$-pieces with adaptive refinement, about $65{,}537$ boxes per tier; gap-free check
+passed; $z=0$ included. All nine tiers certified: $C_E^{\rm cert}$ at most the stated $C_E$, every margin positive; for
+example $C_E^{\rm cert}\le18.71447$ (A1s), $14.14983$ (A5), $16.96349$ (B1s), $16.71729$ (B2). Pointwise check of the
+un-normalised formulas at $90$ points: passed. Negative control: the parameters of version~1.0 with $b_0=10^9$ fail
+(E-iii), as expected.
+\item \emph{Independent covering 2} (verification agent; written from the text alone; \texttt{python-flint} arb,
+$160$ bits, adaptive bisection): $389$--$3013$ leaves per tier; the partition checked by a Kraft sum equal to $1$ and by
+the total area. All nine tiers certified; for example $C_E^{\rm cert}\le18.70756$ (A1s), $14.14845$ (A5), $16.95859$
+(B1s), $16.71253$ (B2). Direct un-normalised evaluation at $120$ cases: passed.
+\item \emph{Reviewer's covering} (blank-slate review; own code from the text; \texttt{mpmath.iv}, $120$ bits,
+$320\times128$ boxes): all nine tiers agree with Table~\ref{tab:certtiers} to the printed digits.
+For the tiers marked $\dagger$ it uses $A_T'$ of Lemma~\ref{lem:P2}.
+\item \emph{Independent reimplementation} of ZC, ZC$'$, E38, E38$'$ and the full L-shaped packing, written from the text
+alone, in exact rational arithmetic, with a separate exact checker (separating axes): $133$ instances,
+$4.39\cdot10^7$ pieces, all valid; some of these instances (end packings where (E-iii) fails) use the convention
+$\tau:=0$ of Remark~\ref{rem:38exact}.
+The wall bounds $U_Z\le B_W''$ hold in $49$ of $49$ walls ((W1)--(W5) hold in $36$ of them), and Lemmas~\ref{lem:P2} and~\ref{lem:P3} hold term by term
+in $46$ of $46$ accounted walls.
+The first in-window tests with an aligned cut ($\tau>0$), eight end packings at $b=1.5\cdot10^6$--$4\cdot10^6$ with the
+parameters of the tiers B1, B1s and B2: all valid; seven of the eight satisfy all hypotheses and are within the bound of
+Lemma~\ref{lem:E38}; in the eighth (B1, $b=1.5\cdot10^6$, $y=59407/4$) hypothesis (E-v) fails for the lower right wall,
+which was filled by rows only (a convention, not part of the construction), so the bound of Lemma~\ref{lem:E38} does not
+apply there. Pointwise check of
+Corollary~\ref{cor:b35} at $5850$ points: passed. $29$ of $30$ negative controls were rejected; the remaining one is a
+valid packing.
+\item \emph{Tiers marked $\ddagger$ (Sections~\ref{ssec:sawtooth} and~\ref{ssec:liftT2}).} Two blank-slate AI reviews:
+one found Lemmas~\ref{lem:SL}, \ref{lem:T1}, \ref{lem:W4} and~\ref{lem:T2} correct and Corollary~\ref{cor:b35c} and the
+tiers correct after fixes (included); the other found all parts correct. Exact tests (not proofs): $53$ walls ZC$'$
+($34$ with all hypotheses true), no violation of Lemmas~\ref{lem:T1} and~\ref{lem:W4}, largest ratio $U_Z/B_{W4}=0.737$;
+Lemma~\ref{lem:SL} in $21592$ cases; Lemma~\ref{lem:T2} in $376$ cases and in $3000$ cases forced to $y_1=y_0+1$; no
+violation. Three independent coverings of the rows of Table~\ref{tab:certC}, written from the text, all passing
+(\texttt{python-flint} arb: $C_E^{\rm cert}\le14.46634$, $14.79786$, $14.97606$; \texttt{mpmath.iv}: $14.469520$, $14.801342$,
+$14.979582$; the reviewer's \texttt{mpmath.iv} covering reproduces $14.47251$, $14.80459$, $14.982873$); all three implement
+the same normalised inequalities (Appendix~\ref{app:encC}), with point checks of the un-normalised formulas at $46$ and
+$36$ points. A direct covering of the un-normalised bound for $b_0\le b\le10^{16}$, without Appendix~\ref{app:encC}
+(\texttt{python-flint} arb; integer quantities enclosed exactly per box, actual wall lengths; only $J_0$ uses the
+mean-value inequality), certifies $U/b^{3/5}\le13.910$, $14.235$, $14.319$ for C1, C2, C3, all margins positive; for
+$b>10^{16}$ the normalised coverings apply. That the cited results of Section~\ref{sec:ends} hold for real lifts was
+checked by two independent AI readings (Section~\ref{ssec:liftT2}). Exact end packings: $15$ complete end packings E38$'$
+for the rows C1--C3 with lifts of Lemma~\ref{lem:T2} in the window, $b$ from $1.41\cdot10^7$ to $2.30\cdot10^7$, each with
+$1.47\cdot10^7$--$2.37\cdot10^7$ pieces, checked exactly (separating axes, containment, exact $U$): all hypotheses hold,
+no overlap, no failure; $U$ is at most $0.71$ times the bound of Lemma~\ref{lem:E38} and at most $0.69\,C_Eb^{3/5}$, and
+$U_Z/B_{W4}$ lies between $0.44$ and $0.75$; $3$ of the $15$ have $y_1=y_0+1$. Of $30$ negative controls $24$ were
+rejected; the other $6$ came from a flaw in the design of the controls and were rejected when applied to the whole
+packing.
+\end{itemize}
+
 \emph{Programs and data.} \url{https://github.com/squarepacker/k2-minus-c-upper} (archived on Zenodo; the DOI is
 given in the repository README). The data files \texttt{stair\_k*.json.gz} (the end pieces of the five certificates),
 the checker \texttt{stair\_check.py}, the generator \texttt{stair\_dump.py} and the interval computation
 \texttt{const\_stair.py} of the constants of Corollary~\ref{cor:b23} and Section~\ref{ssec:proofmain}, the interval
-covering \texttt{cert3e.py} of the constants of Corollary~\ref{cor:b35}, and the wall filler \texttt{r38.py} with the
-exact checker \texttt{chk.py} and the driver \texttt{run\_z.py} (Remark~\ref{rem:38exact}) accompany this text;
-\texttt{README\_code.txt} lists the commands and the expected outputs.
+covering \texttt{cert3e.py} of the constants of Corollary~\ref{cor:b35} for the row v1.0, the author's covering
+\texttt{cert\_v3.py} of all rows of Table~\ref{tab:certtiers} with the merge and theorem checks \texttt{finalize\_v3.py}
+and the recorded slices, the wall filler \texttt{r38.py} with the exact checker \texttt{chk.py} and the driver
+\texttt{run\_z.py}, and the exact tests of version~1.1 in \texttt{code/zc\_tests} (Remark~\ref{rem:38exact})
+as well as the author's covering \texttt{cert\_v4.py} of the rows of Table~\ref{tab:certC} with its recorded slices and merges, and
+the exact tests \texttt{sl\_t2\_test.py} of Lemmas~\ref{lem:SL} and~\ref{lem:T2}
+accompany this text; \texttt{README\_code.txt} lists the commands and the expected outputs. The programs of the reviews and of
+the independent coverings and reimplementations are not included.
 
 \subsection*{Use of AI}
 Developed with the assistance of Claude (Anthropic), including the proofs, the text and the programs; the author takes
@@ -1877,6 +2680,8 @@ Ser.~A \textbf{24} (1978), 170--186.
 \bibitem[T]{T} S.~Ryu, Packing $k^2-c$ unit squares: a lower bound of order $k^{1/3}$ for the deficiency, preprint,
 version~1.0, 2026, doi:10.5281/zenodo.23213564 (all versions: doi:10.5281/zenodo.23213563); programs:
 doi:10.5281/zenodo.23212059 (all versions: doi:10.5281/zenodo.23212058).
+\bibitem[U]{U} S.~Ryu, Packing $k^2-c$ unit squares: an upper bound of order $k^{3/8}$ for the deficiency, preprint,
+version~1.0, 2026, doi:10.5281/zenodo.23256655 (all versions: doi:10.5281/zenodo.23256654). Version~1.0 of this paper.
 \bibitem[WDL]{WDL} S.~Wang, T.~Dong and J.~Li, A new result on packing unit squares into a large square,
 arXiv:1603.02368v2 (2016).
 \end{thebibliography}

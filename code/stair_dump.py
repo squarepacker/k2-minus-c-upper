@@ -4,7 +4,7 @@
 # of the paper): the (k-b)^2 grid, two bands of b x 1 tilted rows, and four end regions Reg(y), one at each end of
 # each band.  Each end region is filled by the staircase construction: columns of one fixed tilt alpha whose lower
 # squares are replaced by horizontal unit-square layers along a nondecreasing staircase, plus axis-parallel rows in
-# the left wall wedge (idea: D. Bui, arXiv 2508.04603v2, Sec. 3).  This is the tuned variant used for the table:
+# the left wall wedge (idea: D. Bui, arXiv 2508.04603v2, Sec. 3).  This is the tuned construction used for the table:
 # for each end, m (squares per column) is chosen by a floating-point pre-run among floor(y + rho) and
 # floor(y + rho) + 1, and the tilt is the smallest t = u/2^40 (t = tan(alpha/2)) with m ca + sa <= y + (ca - s) T
 # (column 0 fits; ca = cos alpha, sa = sin alpha).  The choices only select the packing; stair_check.py verifies the result exactly.
